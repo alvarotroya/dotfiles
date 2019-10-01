@@ -1,0 +1,8 @@
+defscrollback 2024
+defscrollback 1000	
+
+hardstatus on
+hardstatus alwayslastline
+hardstatus string “%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a ”
+caption always "%m/%d/%y %0c%{=b kg}  %l  %{=r gk}%-w%{=b wb}%50>%n%f* %t%{-}%+Lw%<%{- Wk}"
+startup_message off 
