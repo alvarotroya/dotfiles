@@ -1,0 +1,13 @@
+#/bin/bash
+#Swaps Capslock and Escape and maps Escape to modifier key Mode_switch when held down
+
+setxkbmap us
+setxkbmap -option "caps:escape, compose:ralt, terminate:ctrl_alt_bksp"
+
+xmodmap -e "keycode 66 = Mode_switch"
+xmodmap -e "keycode any = Escape"
+xmodmap -e "keysym h = h H Left"
+xmodmap -e "keysym l = l L Right"
+xmodmap -e "keysym k = k K Up"
+xmodmap -e "keysym j = j J Down"
+xcape -e "Mode_switch=Escape"
