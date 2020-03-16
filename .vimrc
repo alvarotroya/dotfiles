@@ -30,9 +30,11 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'petRUShka/vim-magma'
 Plugin 'lervag/vimtex'
-"Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'tpope/vim-unimpaired'
-"Plugin 'brennier/quicktex'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'iamcco/markdown-preview.nvim'
+Plugin 'junegunn/limelight.vim'
+Plugin 'junegunn/goyo.vim'
 
 " ==== PLUGIN THEMES ====
 Plugin 'vim-scripts/darktango.vim'
@@ -76,7 +78,7 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 :set guioptions-=T  "remove toolbar
 :set guioptions-=r  "remove right-hand scroll bar
 :set guioptions-=L  "remove left-hand scroll bar
-:set lines=999 columns=999
+" :set lines=999 columns=999
 
 " ==== CtrlP ====
 let g:ctrlp_show_hidden = 1
@@ -143,10 +145,10 @@ map  <Leader>W <Plug>(easymotion-bd-W)
 map <Leader>/ <Plug>(easymotion-sn)
 omap <Leader>/ <Plug>(easymotion-tn)
 
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
+map <Leader>l <Plug>(easymotion-fl)
+map <Leader>j <Plug>(easymotion-f)
+map <Leader>k <Plug>(easymotion-F)
+map <Leader>h <Plug>(easymotion-Fl)
 "let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 
 " ==== YouCompleteMe ====
@@ -162,6 +164,38 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" ==== Markdown-Preview.Vim ====
+let g:mkdp_auto_start = 1
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_ip = ''
+let g:mkdp_browser = ''
+let g:mkdp_echo_preview_url = 0
+" a custom vim function name to open preview page
+" this function will receive url as param
+" default is empty
+let g:mkdp_browserfunc = ''
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {}
+    \ }
+" use a custom port to start server or random for empty
+let g:mkdp_port = ''
+" preview page title
+" ${name} will be replace with the file name
+let g:mkdp_page_title = '「${name}」'
+" use a custom markdown and highlighting style (must be absolute path)
+let g:mkdp_markdown_css = '/home/alvaro-uni/repos/markdown-css/retro.css'
+let g:mkdp_highlight_css = ''
 
 " ==== Window navigation ====
 map <C-j> <C-W>j
@@ -207,6 +241,10 @@ set tw=1000
 "set si "Smart indent
 set wrap "Wrap lines
 
+"move to end and beginning of line
+nnoremap H ^
+nnoremap L $
+
 "double scape to save
 map <Esc><Esc> :w<CR>
 
@@ -219,6 +257,10 @@ map <F6> <esc>:setlocal spell! spelllang=de_de<CR>
 
 "nmap <C-o> <Nop>
 map <F2> :so $MYVIMRC<CR>
+
+"save shortcut
+nmap <C-s> :w<CR>
+imap <C-s> <esc>:w<CR>
 
 "quick buffer switching
 "nnoremap  <silent>   <tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
@@ -262,3 +304,4 @@ inoremap ;gui <++>
 inoremap ;( <C-g>u()<++><Esc>T(i
 inoremap ;[ <C-g>u[]<++><Esc>T[i
 inoremap ;{ <C-g>u{}<++><Esc>T{i
+
