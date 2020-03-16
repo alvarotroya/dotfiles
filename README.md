@@ -24,7 +24,7 @@ My dotfiles. i3gaps + vim + oh-my-zsh + tmux + dunst + arrow keys on home row.
 ### YouCompleteMe
 
 1. Install dependencies `sudo apt install build-essential cmake python3-dev`
-2. Run ```cd ~/.vim/bundle/YouCompleteMe``` and `python3 install.py --clang-completer`
+2. Run ```cd ~/.vim/bundle/YouCompleteMe && python3 install.py --clang-completer`
 
 ### Packages
 
