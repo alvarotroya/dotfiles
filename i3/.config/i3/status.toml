@@ -1,0 +1,88 @@
+# Powerline i3status bar
+# Add the folowing lines to your i3 config
+#
+## Start i3bar to display a workspace bar (plus the system information i3status
+## finds out, if available)
+#bar {
+#        #status_command i3status
+#    font pango:DejaVu Sans Mono, FontAwesome 10
+#    status_command i3status-rs ~/.config/i3/status.toml
+#    colors {
+#        separator #666666
+#        background #222222
+#        statusline #dddddd
+#        focused_workspace #0088CC #0088CC #ffffff
+#        active_workspace #333333 #333333 #ffffff
+#        inactive_workspace #333333 #333333 #888888
+#        urgent_workspace #2f343a #900000 #ffffff        
+#    }
+#}
+
+theme = "solarized-dark"
+icons = "awesome"
+
+#[[block]]
+#block = "weather"
+#format = "{weather} ({location}) {temp}°"
+#service = { name = "openweathermap", api_key = "e18221385ef5ef4804fbc3d22c2ea76d", city_id = "2907911", units = "metric" }
+
+#[[block]]
+#block = "focused_window"
+#max_width = 21
+
+#[[block]]
+#block = "disk_space"
+#path = "/home"
+#alias = "/home"
+#info_type = "available"
+#unit = "GB"
+#interval = 20
+#warning = 90.0
+#alert = 10.0
+
+[[block]]
+block = "speedtest"
+bytes = true
+interval = 3600
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "load"
+interval = 1
+format = "{1m}"
+
+[[block]]
+block = "temperature"
+collapsed = false
+interval = 10
+#format = "{min}° min, {max}° max, {average}° avg"
+format = "{max}° max"
+chip = "*-isa-*"
+
+
+[[block]]
+block = "sound"
+
+#[[block]]
+#block = "backlight"
+#device = "intel_backlight"
+#step_width = 5
+
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage}% {time}"
+
+[[block]]
+block = "time"
+interval = 60
+format = "%a %d/%m %R"

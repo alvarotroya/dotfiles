@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# Get current wallpaper
+wallpaper=$(tail -1 ~/.fehbg | cut -d "'" -f2)
+
+function join
+{
+    local IFS="$1"
+    shift
+    echo "$*"
+}
+
+function menu
+{
+    # Grab the prompt message.
+    local prompt="$1"
+    shift
+
+    # Combine the rest of our arguments.
+    local items=$(join $'\n' "$@")
+
+    dmenu -i -p "${prompt}" <<< "${items}" | tail -1
+}
+
+function turn_off_all_outputs
+{
+    xrandr --output LVDS1 --off
+    xrandr --output DP1 --off 
+    xrandr --output DP2 --off 
+    xrandr --output DP3 --off 
+    xrandr --output HDMI1 --off 
+    xrandr --output HDMI2 --off 
+    xrandr --output HDMI3 --off 
+    xrandr --output VGA1 --off 
+    xrandr --output VIRTUAL1 --off
+}
+
+options="laptop
+dual_monitor
+"
+
+display_setup=$(menu "Display setup: " "${options}")
+case "$display_setup" in
+
+  "laptop")
+    turn_off_all_outputs
+    xrandr --output LVDS1 --primary --mode 1366x768 --pos 0x0 --rotate normal 
+    feh --bg-scale "${wallpaper}"
+    ;;
+
+  "dual_monitor")
+    turn_off_all_outputs
+    xrandr --output HDMI2 --primary --mode 1920x1080 --pos 0x0 --rotate normal 
+    xrandr --output VGA1 --mode 1920x1080 --pos 0x0 --rotate left
+    xrandr --output HDMI2 --pos 1080x420
+    feh --bg-scale "${wallpaper}"
+    ;;
+
+esac
+
+

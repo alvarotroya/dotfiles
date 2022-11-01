@@ -1,0 +1,10 @@
+#!/bin/bash
+while true; do
+  cpu_usage="  $(mpstat | awk '/all/ {print $4}')%"
+  mem_usage=" $(free -h | awk '/Mem/ {print $3}')"
+  temp=" $(acpi -t | awk '{print $4}') C"
+  battery=" $(acpi -b | awk -F ',' '{print $2}')"
+  date="$(date '+ %a %b %d |  %H:%M:%S')"
+  xsetroot -name "$cpu_usage | $mem_usage | $temp | $battery | $date"
+	sleep 5
+done

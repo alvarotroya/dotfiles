@@ -1,0 +1,14 @@
+#!/bin/bash
+
+for i in {1..10}
+do
+    let iMod10=$i%10
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-$i "['<Super>$iMod10']"
+    gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-$i "['<Super><Shift>$iMod10']"
+done
+
+gsettings set org.gnome.desktop.wm.keybindings close "['<Super><Shift>q']"
+gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Super>f']"
+
+
+

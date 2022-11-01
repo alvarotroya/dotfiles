@@ -1,0 +1,123 @@
+set showmode
+set clipboard+=unnamed
+set smartcase
+set history=10000
+
+" https://youtrack.jetbrains.com/issue/VIM-959
+set ideamarks
+set idearefactormode=keep
+
+" https://github.com/JetBrains/ideavim/wiki/%60ideajoin%60-examples
+set ideajoin
+
+" https://youtrack.jetbrains.com/issue/VIM-1521
+set commentary
+
+" https://github.com/JetBrains/ideavim/wiki/Select-mode
+set selectmode-=template
+
+"  Mouseless Driven Development by Hadi Hariri https://www.youtube.com/watch?v=UH6YVv9js3s 
+" https://github.com/JetBrains/ideavim
+" https://github.com/Valloric/dotfiles/blob/master/intellij/ideavimrc
+" https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf
+set surround
+set easymotion
+let mapleader = " "
+
+"double scape to save
+map <Esc><Esc> :w<CR>
+
+" reload ideavimrc
+nnoremap <Leader>R :source ~/.ideavimrc<CR>
+
+" Yank from cursor to end of line, to be consistent with C and D.
+nnoremap Y y$
+
+" ===================== 
+"    ActionSearch 
+" =====================
+noremap <Leader>a :action GotoAction<CR>
+
+" misc actions
+nnoremap <Leader>zen :action ToggleZenMode<CR>
+
+" ===================== 
+"     REFACTORING
+" =====================
+noremap <Leader>n :action Inline<CR>
+noremap <Leader>ev :action IntroduceVariable<CR>
+noremap <Leader>ef :action IntroduceField<CR>
+noremap <Leader>ec :action IntroduceConstant<CR>
+noremap <Leader>ep :action IntroduceParameter<CR>
+noremap <Leader>em :action ExtractMethod<CR>
+noremap <Leader>r :action RenameElement<CR>
+
+" Alt + Shift + Insert in idea. 
+" map <Leader>v :action EditorToggleColumnMode<CR>
+
+" ===================== 
+"     NAVIGATION
+" =====================
+
+" Open selected file in project view
+nnoremap <Leader>1 :action SelectIn<CR>
+
+" Create split editor screens
+nnoremap <Leader>\| :action SplitVertically<CR>
+nnoremap <Leader>- :action SplitHorizontally<CR>
+nnoremap <Leader>us :action Unsplit<CR>
+nnoremap <Leader>u! :action UnsplitAll<CR>
+
+" Navigate split screens
+nnoremap <C-a>h <C-w>h
+nnoremap <C-a>j <C-w>j
+nnoremap <C-a>k <C-w>k
+nnoremap <C-a>l <C-w>l
+inoremap <C-a>h <C-o><C-w>h
+inoremap <C-a>j <C-o><C-w>j
+inoremap <C-a>k <C-o><C-w>k
+inoremap <C-a>l <C-o><C-w>l
+
+" Navigate cursor history
+" noremap <C-i> :action Forward<CR>
+" noremap <C-o> :action Back<CR>
+noremap <Leader>h :action Back<CR>
+noremap <Leader>l :action Forward<CR>
+
+" Navigate git changes
+nnoremap <C-S-i> :action VcsShowNextChangeMarker<CR>
+nnoremap <C-S-o> :action VcsShowPrevChangeMarker<CR>
+nnoremap <Leader>gk :action VcsShowPrevChangeMarker<CR>
+nnoremap <Leader>gj :action VcsShowNextChangeMarker<CR>
+
+" Folding
+nnoremap zf :action CollapseRegion<CR>
+nnoremap zd :action ExpandRegion<CR>
+
+" bookmarks (a bit similar to vim marks)
+nnoremap m :action ToggleBookmarkWithMnemonic<CR>
+nnoremap ' :action ShowBookmarks<CR>
+nnoremap ]b :action GotoNextBookmark<CR>
+nnoremap [b :action GotoPreviousBookmark<CR>
+
+"search with builtin search
+nnoremap / :action Find<cr>
+
+"select all occurrences with builtin method
+noremap * :action SelectAllOccurrences<cr>
+
+" unimpaired mappings
+nnoremap [<Space> O<esc>j
+nnoremap ]<Space> o<esc>k
+nnoremap [g :action VcsShowNextChangeMarker<CR>
+nnoremap ]g :action VcsShowPrevChangeMarker<CR>
+
+" easymotion commands
+let g:EasyMotion_smartcase = 1
+nmap <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader><Leader>l <Plug>(easymotion-fl)
+nmap <Leader><Leader>h <Plug>(easymotion-Fl)
+nmap <Leader>j <Plug>(easymotion-f)
+nmap <Leader>k <Plug>(easymotion-F)
+nmap <Leader>J <Plug>(easymotion-j)
+nmap <Leader>K <Plug>(easymotion-k)
