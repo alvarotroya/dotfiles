@@ -1,0 +1,29 @@
+# Git
+alias g='git'
+alias gc='git checkout'
+alias gcm='git checkout master'
+alias gpm='git checkout master && git pull && git checkout -'
+alias gs='git status'
+
+# Common directories
+alias cdg='cd $HOME/repos/qm/goliat'
+alias rps='cd $(find $HOME/repos -maxdepth 4 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
+alias repos='cd $(find $HOME/repos -maxdepth 4 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
+alias data='cd $(find $HOME/data -maxdepth 4 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
+
+# Conda
+alias ca='conda activate'
+alias qm-dev='conda activate qm-dev'
+
+# Docker shortcuts
+alias stop-all-docker-containers='docker stop $(docker ps -q)'
+alias remove-all-docker-containers='docker rm $(docker ps -qa)'
+alias pause-all-docker-containers='docker pause $(docker ps -q)'
+alias unpause-all-docker-containers='docker unpause $(docker ps -qa)'
+alias remove-all-docker-images='docker rmi -f $(docker images -q)'
+
+# Common commands
+alias rm-dvc='rm -rf $HOME/repos/qm/goliat/pipeline_builder/pipeline_builder/pipeline/.dvc/tmp/'
+alias build-pb-goliat='DOCKER_BUILDKIT=1 docker buildx build --platform linux/amd64 -t pipeline_development_image_goliat -o type=docker -f ./pipeline_builder/docker/Dockerfile.local .'
+alias build-pb-pr-branch='DOCKER_BUILDKIT=1 docker buildx build --platform linux/amd64 -t pipeline_development_image_pr_branch -o type=docker -f ./pipeline_builder/docker/Dockerfile.local .'
+

@@ -1,0 +1,147 @@
+set showmode
+set clipboard+=unnamed
+set relativenumber
+set number
+set ignorecase
+set smartcase
+set history=10000
+
+" https://youtrack.jetbrains.com/issue/VIM-959
+set ideamarks
+set idearefactormode=keep
+
+" https://github.com/JetBrains/ideavim/wiki/%60ideajoin%60-examples
+set ideajoin
+
+" https://youtrack.jetbrains.com/issue/VIM-1521
+set commentary
+
+" https://github.com/JetBrains/ideavim/wiki/Select-mode
+set selectmode-=template
+
+"  Mouseless Driven Development by Hadi Hariri https://www.youtube.com/watch?v=UH6YVv9js3s 
+" https://github.com/JetBrains/ideavim
+" https://github.com/Valloric/dotfiles/blob/master/intellij/ideavimrc
+" https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf
+set surround
+set easymotion
+Plug 'tommcdo/vim-exchange'
+
+let mapleader = " "
+
+"double scape to save
+map <Esc><Esc> :w<CR>
+
+" reload ideavimrc
+nnoremap <Leader>R :source ~/.ideavimrc<CR>
+
+" Yank from cursor to end of line, to be consistent with C and D.
+nnoremap Y y$
+
+" ===================== 
+"    Search
+" =====================
+noremap <Leader>a :action GotoAction<CR>
+noremap <Leader>f :action GotoFile<CR>
+noremap <Leader>sr :action RecentFiles<CR>
+noremap <Leader>tj :action GotoNextError<CR>
+noremap <Leader>tk :action GotoPreviousError<CR>
+
+" misc actions
+nnoremap <Leader>zen :action ToggleZenMode<CR>
+
+" ===================== 
+"     REFACTORING
+" =====================
+noremap <Leader>ln :action Inline<CR>
+noremap <Leader>lv :action IntroduceVariable<CR>
+noremap <Leader>lm :action ExtractMethod<CR>
+noremap <Leader>lr :action RenameElement<CR>
+
+" Alt + Shift + Insert in idea. 
+map <Leader>v :action EditorToggleColumnMode<CR>
+
+" ===================== 
+"     NAVIGATION
+" =====================
+
+" Open selected file in project view
+nnoremap <Leader>1 :action SelectIn<CR>
+nnoremap <Leader>e :action SelectIn<CR>
+nnoremap <Leader>4 :action EditSource<CR>
+
+" Create split editor screens
+nnoremap <Leader>\| :action SplitVertically<CR>
+nnoremap <Leader>- :action SplitHorizontally<CR>
+nnoremap <Leader>us :action Unsplit<CR>
+nnoremap <Leader>u! :action UnsplitAll<CR>
+
+" Navigate split screens
+nnoremap <C-a>h <C-w>h
+nnoremap <C-a>j <C-w>j
+nnoremap <C-a>k <C-w>k
+nnoremap <C-a>l <C-w>l
+inoremap <C-a>h <C-o><C-w>h
+inoremap <C-a>j <C-o><C-w>j
+inoremap <C-a>k <C-o><C-w>k
+inoremap <C-a>l <C-o><C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+inoremap <C-h> <C-o><C-w>h
+inoremap <C-j> <C-o><C-w>j
+inoremap <C-k> <C-o><C-w>k
+inoremap <C-l> <C-o><C-w>l
+
+" Navigate cursor history
+" noremap <C-i> :action Forward<CR>
+" noremap <C-o> :action Back<CR>
+" noremap <Leader>h :action Back<CR>
+" noremap <Leader>l :action Forward<CR>
+
+" Navigate git changes
+" nnoremap <C-S-i> :action VcsShowNextChangeMarker<CR>
+" nnoremap <C-S-o> :action VcsShowPrevChangeMarker<CR>
+nnoremap <Leader>gk :action VcsShowPrevChangeMarker<CR>
+nnoremap <Leader>gj :action VcsShowNextChangeMarker<CR>
+
+" Navigate to definition/usages
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gr :action ShowUsages<CR>
+nnoremap <Leader>la :action ShowIntentionActions<CR>
+nnoremap <Leader>ls :action FileStructurePopup<CR>
+nnoremap <Leader>lp :action QuickDefinition<CR>
+
+" Folding
+nnoremap zf :action CollapseRegion<CR>
+nnoremap zd :action ExpandRegion<CR>
+
+" bookmarks (a bit similar to vim marks)
+nnoremap m :action ToggleBookmarkWithMnemonic<CR>
+nnoremap ' :action ShowBookmarks<CR>
+nnoremap ]b :action GotoNextBookmark<CR>
+nnoremap [b :action GotoPreviousBookmark<CR>
+
+"select all occurrences with builtin method
+noremap * :action SelectAllOccurrences<cr>
+
+" unimpaired mappings
+nnoremap [<Space> O<esc>j
+nnoremap ]<Space> o<esc>k
+nnoremap [g :action VcsShowNextChangeMarker<CR>
+nnoremap ]g :action VcsShowPrevChangeMarker<CR>
+
+" easymotion commands
+set g:EasyMotion_smartcase = 1
+nmap <Leader>hw <Plug>(easymotion-bd-w)
+nmap <Leader>hk <Plug>(easymotion-k)
+nmap <Leader>hj <Plug>(easymotion-j)
+nmap <Leader>hc <Plug>(easymotion-bd-f2)
+" nmap <Leader>f <Plug>(easymotion-bd-f)
+" nmap <Leader><Leader>l <Plug>(easymotion-fl)
+" nmap <Leader><Leader>h <Plug>(easymotion-Fl)
+" nmap <Leader>j <Plug>(easymotion-f)
+" nmap <Leader>k <Plug>(easymotion-F)
+" nmap <Leader>J <Plug>(easymotion-j)
+" nmap <Leader>K <Plug>(easymotion-k)
