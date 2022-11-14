@@ -1,5 +1,8 @@
 set showmode
 set clipboard+=unnamed
+set relativenumber
+set number
+set ignorecase
 set smartcase
 set history=10000
 
@@ -22,6 +25,8 @@ set selectmode-=template
 " https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf
 set surround
 set easymotion
+Plug 'tommcdo/vim-exchange'
+
 let mapleader = " "
 
 "double scape to save
@@ -34,9 +39,13 @@ nnoremap <Leader>R :source ~/.ideavimrc<CR>
 nnoremap Y y$
 
 " ===================== 
-"    ActionSearch 
+"    Search
 " =====================
 noremap <Leader>a :action GotoAction<CR>
+noremap <Leader>f :action GotoFile<CR>
+noremap <Leader>sr :action RecentFiles<CR>
+noremap <Leader>tj :action GotoNextError<CR>
+noremap <Leader>tk :action GotoPreviousError<CR>
 
 " misc actions
 nnoremap <Leader>zen :action ToggleZenMode<CR>
@@ -44,16 +53,13 @@ nnoremap <Leader>zen :action ToggleZenMode<CR>
 " ===================== 
 "     REFACTORING
 " =====================
-noremap <Leader>n :action Inline<CR>
-noremap <Leader>ev :action IntroduceVariable<CR>
-noremap <Leader>ef :action IntroduceField<CR>
-noremap <Leader>ec :action IntroduceConstant<CR>
-noremap <Leader>ep :action IntroduceParameter<CR>
-noremap <Leader>em :action ExtractMethod<CR>
-noremap <Leader>r :action RenameElement<CR>
+noremap <Leader>ln :action Inline<CR>
+noremap <Leader>lv :action IntroduceVariable<CR>
+noremap <Leader>lm :action ExtractMethod<CR>
+noremap <Leader>lr :action RenameElement<CR>
 
 " Alt + Shift + Insert in idea. 
-" map <Leader>v :action EditorToggleColumnMode<CR>
+map <Leader>v :action EditorToggleColumnMode<CR>
 
 " ===================== 
 "     NAVIGATION
@@ -61,6 +67,8 @@ noremap <Leader>r :action RenameElement<CR>
 
 " Open selected file in project view
 nnoremap <Leader>1 :action SelectIn<CR>
+nnoremap <Leader>e :action SelectIn<CR>
+nnoremap <Leader>4 :action EditSource<CR>
 
 " Create split editor screens
 nnoremap <Leader>\| :action SplitVertically<CR>
@@ -77,18 +85,33 @@ inoremap <C-a>h <C-o><C-w>h
 inoremap <C-a>j <C-o><C-w>j
 inoremap <C-a>k <C-o><C-w>k
 inoremap <C-a>l <C-o><C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+inoremap <C-h> <C-o><C-w>h
+inoremap <C-j> <C-o><C-w>j
+inoremap <C-k> <C-o><C-w>k
+inoremap <C-l> <C-o><C-w>l
 
 " Navigate cursor history
 " noremap <C-i> :action Forward<CR>
 " noremap <C-o> :action Back<CR>
-noremap <Leader>h :action Back<CR>
-noremap <Leader>l :action Forward<CR>
+" noremap <Leader>h :action Back<CR>
+" noremap <Leader>l :action Forward<CR>
 
 " Navigate git changes
-nnoremap <C-S-i> :action VcsShowNextChangeMarker<CR>
-nnoremap <C-S-o> :action VcsShowPrevChangeMarker<CR>
+" nnoremap <C-S-i> :action VcsShowNextChangeMarker<CR>
+" nnoremap <C-S-o> :action VcsShowPrevChangeMarker<CR>
 nnoremap <Leader>gk :action VcsShowPrevChangeMarker<CR>
 nnoremap <Leader>gj :action VcsShowNextChangeMarker<CR>
+
+" Navigate to definition/usages
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gr :action ShowUsages<CR>
+nnoremap <Leader>la :action ShowIntentionActions<CR>
+nnoremap <Leader>ls :action FileStructurePopup<CR>
+nnoremap <Leader>lp :action QuickDefinition<CR>
 
 " Folding
 nnoremap zf :action CollapseRegion<CR>
@@ -100,9 +123,6 @@ nnoremap ' :action ShowBookmarks<CR>
 nnoremap ]b :action GotoNextBookmark<CR>
 nnoremap [b :action GotoPreviousBookmark<CR>
 
-"search with builtin search
-nnoremap / :action Find<cr>
-
 "select all occurrences with builtin method
 noremap * :action SelectAllOccurrences<cr>
 
@@ -113,11 +133,15 @@ nnoremap [g :action VcsShowNextChangeMarker<CR>
 nnoremap ]g :action VcsShowPrevChangeMarker<CR>
 
 " easymotion commands
-let g:EasyMotion_smartcase = 1
-nmap <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader><Leader>l <Plug>(easymotion-fl)
-nmap <Leader><Leader>h <Plug>(easymotion-Fl)
-nmap <Leader>j <Plug>(easymotion-f)
-nmap <Leader>k <Plug>(easymotion-F)
-nmap <Leader>J <Plug>(easymotion-j)
-nmap <Leader>K <Plug>(easymotion-k)
+set g:EasyMotion_smartcase = 1
+nmap <Leader>hw <Plug>(easymotion-bd-w)
+nmap <Leader>hk <Plug>(easymotion-k)
+nmap <Leader>hj <Plug>(easymotion-j)
+nmap <Leader>hc <Plug>(easymotion-bd-f2)
+" nmap <Leader>f <Plug>(easymotion-bd-f)
+" nmap <Leader><Leader>l <Plug>(easymotion-fl)
+" nmap <Leader><Leader>h <Plug>(easymotion-Fl)
+" nmap <Leader>j <Plug>(easymotion-f)
+" nmap <Leader>k <Plug>(easymotion-F)
+" nmap <Leader>J <Plug>(easymotion-j)
+" nmap <Leader>K <Plug>(easymotion-k)
