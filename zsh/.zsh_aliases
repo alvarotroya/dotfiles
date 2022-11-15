@@ -1,3 +1,6 @@
+# General
+alias ll='ls -al'
+
 # Git
 alias g='git'
 alias gc='git checkout'
