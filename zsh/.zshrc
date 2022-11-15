@@ -1,23 +1,32 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$PATH:~/.local/bin/:/usr/sbin
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-# Path to your oh-my-zsh installation.
-export ZSH="/home/alvaro/.oh-my-zsh"
+# The following lines were added by compinstall
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-ZSH_THEME="random"
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**'
+zstyle :compinstall filename '/home/alvaro/.zshrc'
 
-# Blacklist ugly themes
-ZSH_THEME_RANDOM_BLACKLIST=(aussiegeek bira darkblood dogenpunk duellj fino-time funky jonathan kiwi mikeh rkj rkj-repos rixius xiong-chiamiov-plus)
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt autocd extendedglob nomatch notify
+unsetopt beep
+bindkey -v
+# End of lines configured by zsh-newuser-install
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-plugins=(git vi-mode)
-
-source $ZSH/oh-my-zsh.sh
-
+[ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
