@@ -45,3 +45,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
