@@ -1,0 +1,5 @@
+#/bin/sh
+
+i3-msg 'workspace 4; exec spotify'
+sleep 2
+i3-msg 'workspace 9; exec brave-browser'
