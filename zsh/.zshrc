@@ -16,8 +16,8 @@ compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt autocd extendedglob nomatch notify
 unsetopt beep
 bindkey -v
@@ -29,6 +29,7 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -44,6 +45,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
