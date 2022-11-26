@@ -271,12 +271,13 @@ bindsym $mod+Shift+e mode "$mode_system"
 
 
 # Common places to open in editor
-set $mode_editor Open in editor: (v) lvim, (b) bashrc, (i) i3config, (p) profile, (z) zshrc, (a) zsh_aliases
+set $mode_editor Open in editor: (v) lvim, (b) bashrc, (i) i3config, (p) profile, (z) zshrc, (a) zsh_aliases (e) zshenv
 mode "$mode_editor" {
     bindsym v exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim', mode "default"
     bindsym b exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.bashrc', mode "default"
     bindsym z exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.zshrc', mode "default"
     bindsym a exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.zsh_aliases', mode "default"
+    bindsym e exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.zshenv', mode "default"
     bindsym p exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.profile', mode "default"
     bindsym i exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.config/i3/config', mode "default"
 
@@ -289,8 +290,8 @@ bindsym $mod+Shift+v mode "$mode_editor"
 bindsym $mod+Shift+m exec i3-msg 'workspace 10; exec slack; workspace 3; exec pycharm; workspace 1; exec google-chrome'
 
 exec_always --no-startup-id feh --bg-scale Pictures/wallpapers/mountains.jpg
-exec_always setxkbmap -option "caps:escape, compose:ralt, terminate:ctrl_alt_bksp"
+exec_always --no-startup-id customkeymaps
 exec_always --no-startup-id compton --backend glx
 exec --no-startup-id picom -CGb
-exec --no-startup-id customkeymaps
 exec --no-startup-id xbindkeys
+exec --no-startup-id pasystray
