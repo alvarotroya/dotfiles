@@ -11,12 +11,21 @@ general {
         interval = 5
 }
 
+order += "volume master"
 order += "wireless _first_"
 order += "battery all"
 order += "load"
 order += "memory"
 order += "disk /"
 order += "tztime berlin"
+
+volume master {
+        format = "♪: %volume"
+        format_muted = "♪: muted (%volume)"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
 
 wireless _first_ {
         format_up = "WLAN:%quality"
