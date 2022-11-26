@@ -11,7 +11,7 @@ alias gs='git status'
 # Common directories
 alias cdg='cd $HOME/repos/qm/goliat'
 alias rps='cd $(find $HOME/repos -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
-alias repos='cd $(find $HOME/repos -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
+alias dfs='cd $(find $HOME/repos/mine/dotfiles -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
 alias data='cd $(find $HOME/data -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
 
 # Conda
