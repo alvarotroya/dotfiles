@@ -18,7 +18,7 @@ compinit
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
-setopt autocd extendedglob nomatch notify
+setopt autocd extendedglob nomatch notify globdots
 unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
