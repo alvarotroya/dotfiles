@@ -1,0 +1,2 @@
+#!/bin/sh
+scrot '%d-%b-%Y-%H-%M-%S.png' -se 'mv $f ~/Pictures/screenshots/ && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/$f'  
