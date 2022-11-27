@@ -118,14 +118,15 @@ workspace $ws9 output DP-3
 workspace $ws10 output DP-3
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+# bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 # (not necessary since the same as tabbed but with less screen space)
 # bindsym $mod+s layout stacking 
 # dwm mnemonics: m for monocle and t for tiled 
 # (beware tiled will also toggle the tiles orientations)
-bindsym $mod+m layout tabbed
+bindsym $mod+m layout toggle tabbed split
+bindsym $mod+f layout toggle tabbed split
 bindsym $mod+t layout toggle split
 
 # toggle tiling / floating
@@ -282,6 +283,7 @@ mode "$mode_editor" {
     bindsym e exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.zshenv', mode "default"
     bindsym p exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.profile', mode "default"
     bindsym i exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.config/i3/config', mode "default"
+    bindsym Shift+i exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.config/ideavim/ideavimrc', mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
