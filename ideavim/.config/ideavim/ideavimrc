@@ -56,12 +56,16 @@ map <Leader>i <Action>(QuickImplementations)
 
 " misc actions
 nnoremap <Leader>zen :action ToggleZenMode<CR>
+nnoremap <Leader>zoom :action TogglePresentationMode<CR>
+nnoremap <Leader>pres :action TogglePresentationMode<CR>
 
 " ===================== 
 "     REFACTORING
 " =====================
 noremap <Leader>ln :action Inline<CR>
 noremap <Leader>lv :action IntroduceVariable<CR>
+noremap <Leader>lc :action IntroduceConstant<CR>
+noremap <Leader>lp :action IntroduceParameter<CR>
 noremap <Leader>lm :action ExtractMethod<CR>
 noremap <Leader>lr :action RenameElement<CR>
 
@@ -137,7 +141,7 @@ nnoremap gd :action GotoDeclaration<CR>
 nnoremap gr :action ShowUsages<CR>
 nnoremap <Leader>la :action ShowIntentionActions<CR>
 nnoremap <Leader>ls :action FileStructurePopup<CR>
-nnoremap <Leader>lp :action QuickDefinition<CR>
+nnoremap <Leader>ld :action QuickDefinition<CR>
 
 " Folding
 nnoremap zf :action CollapseRegion<CR>
@@ -146,8 +150,6 @@ nnoremap zd :action ExpandRegion<CR>
 " bookmarks (a bit similar to vim marks)
 nnoremap m :action ToggleBookmarkWithMnemonic<CR>
 nnoremap ' :action ShowBookmarks<CR>
-nnoremap ]b :action GotoNextBookmark<CR>
-nnoremap [b :action GotoPreviousBookmark<CR>
 
 "select all occurrences with builtin method
 noremap * :action SelectAllOccurrences<cr>
@@ -155,8 +157,6 @@ noremap * :action SelectAllOccurrences<cr>
 " unimpaired mappings
 nnoremap [<Space> O<esc>j
 nnoremap ]<Space> o<esc>k
-nnoremap [g :action VcsShowNextChangeMarker<CR>
-nnoremap ]g :action VcsShowPrevChangeMarker<CR>
 
 " easymotion commands
 set g:EasyMotion_smartcase = 1
