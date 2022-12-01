@@ -2,8 +2,6 @@
 alias ll='ls -al'
 
 # Git
-alias g='git'
-alias gc='git checkout'
 alias gcm='git checkout master'
 alias gpm='git checkout master && git pull && git checkout -'
 alias gs='git status'
