@@ -86,11 +86,18 @@ map <Leader>] <Action>(MethodDown)
 " Debugging
 map <Leader>db <Action>(ToggleLineBreakpoint)
 map <Leader>dd <Action>(Debug)
-map <Leader>dr <Action>(Run)
-map <Leader>dc <Action>(Stop)
+map <Leader>d. <Action>(DebugClass)
+map <Leader>dx <Action>(ChooseDebugConfiguration)
+map <Leader>dr <Action>(Resume)
+map <Leader>ds <Action>(Stop)
 map <Leader>di <Action>(StepInto)
 map <Leader>do <Action>(StepOver)
-map <Leader>dn <Action>(Resume)
+
+" Running
+map <Leader>rr <Action>(Run)
+map <Leader>r. <Action>(RunClass)
+map <Leader>rc <Action>(RunConfiguration)
+map <Leader>rx <Action>(ChooseRunConfiguration)
 
 " Create split editor screens
 nnoremap <Leader>\| :action SplitVertically<CR>
