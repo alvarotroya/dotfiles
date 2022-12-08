@@ -294,8 +294,10 @@ bindsym $mod+Shift+v mode "$mode_editor"
 bindsym $mod+Shift+m exec i3-msg 'workspace 10; exec slack; workspace 3; exec pycharm; workspace 1; exec google-chrome'
 
 exec_always --no-startup-id feh --bg-scale Pictures/wallpapers/mountains.jpg
-exec_always --no-startup-id customkeymaps
 exec_always --no-startup-id xbindkeys -p
 exec_always --no-startup-id compton --backend glx
+exec_always --no-startup-id customkeymaps
 exec --no-startup-id picom -CGb
 exec --no-startup-id pasystray
+exec --no-startup-id copyq
+exec --no-startup-id 1password
