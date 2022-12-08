@@ -165,6 +165,9 @@ noremap * :action SelectAllOccurrences<cr>
 nnoremap [<Space> O<esc>j
 nnoremap ]<Space> o<esc>k
 
+" don't update registry when pasting in visual mode
+vnoremap p "_dP 
+
 " easymotion commands
 set g:EasyMotion_smartcase = 1
 nmap <Leader>sw <Plug>(easymotion-bd-w)
