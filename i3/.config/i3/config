@@ -100,30 +100,6 @@ default_orientation vertical
 # split in vertical orientation
 bindsym $mod+minus split v
 
-# change focus across monitors
-bindsym $mod+comma focus output left
-bindsym $mod+period focus output right
-
-# move containers across monitors
-bindsym $mod+Shift+comma move container to output left, focus output left
-bindsym $mod+Shift+period move container to output right, focus output right
-
-# move workspaces across monitors
-bindsym $mod+Shift+slash move workspace to output left, focus output left
-bindsym $mod+Shift+minus move workspace to output right, focus output right
-
-# place workspaces into specific outputs
-workspace $ws1 output DP-4
-workspace $ws2 output DP-4
-workspace $ws3 output DP-4
-workspace $ws4 output DP-3
-workspace $ws5 output DP-0.1.5
-workspace $ws6 output DP-0.1.5
-workspace $ws7 output DP-0.1.5
-workspace $ws8 output DP-3
-workspace $ws9 output DP-3
-workspace $ws10 output DP-3
-
 # enter fullscreen mode for the focused container
 # bindsym $mod+f fullscreen toggle
 
@@ -148,7 +124,7 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-# Define names for default workspaces for which we configure key bindings later on.
+# Define names for default workspaces and outputs for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
 set $ws2 "2"
@@ -160,6 +136,33 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+set $mon0 "DP-3"
+set $mon1 "DP-0"
+set $mon2 "DP-4.1.5"
+
+
+# place workspaces into specific outputs
+workspace $ws1 output $mon1
+workspace $ws2 output $mon1
+workspace $ws3 output $mon1
+workspace $ws4 output $mon2
+workspace $ws5 output $mon2
+workspace $ws6 output $mon2
+workspace $ws7 output $mon0
+workspace $ws8 output $mon0
+workspace $ws9 output $mon0
+workspace $ws10 output $mon0
+
+# change focus across monitors
+bindsym $mod+comma focus output $mon0
+bindsym $mod+period focus output $mon1
+bindsym $mod+slash focus output $mon2
+
+# move containers across monitors
+bindsym $mod+Shift+comma move workspace to output $mon0
+bindsym $mod+Shift+period move workspace to output $mon1
+bindsym $mod+Shift+slash move workspace to output $mon2
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1

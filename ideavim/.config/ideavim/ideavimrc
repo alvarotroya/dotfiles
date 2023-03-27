@@ -146,6 +146,7 @@ nnoremap <Leader>gj :action VcsShowNextChangeMarker<CR>
 " Navigate to definition/usages
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gr :action ShowUsages<CR>
+nnoremap gi :action GotoImplementation<CR>
 nnoremap <Leader>la :action ShowIntentionActions<CR>
 nnoremap <Leader>ls :action FileStructurePopup<CR>
 nnoremap <Leader>ld :action QuickDefinition<CR>
