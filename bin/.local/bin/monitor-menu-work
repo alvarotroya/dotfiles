@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Get current wallpaper
+wallpaper=$(tail -1 ~/.fehbg | cut -d "'" -f2)
+
+function join
+{
+    local IFS="$1"
+    shift
+    echo "$*"
+}
+
+function menu
+{
+    # Grab the prompt message.
+    local prompt="$1"
+    shift
+
+    # Combine the rest of our arguments.
+    local items=$(join $'\n' "$@")
+
+    dmenu -i -p "${prompt}" <<< "${items}" | tail -1
+}
+
+function turn_off_all_outputs
+{
+    xrandr --output DP-4.1.5 --off
+    xrandr --output DP-4.2 --off 
+    xrandr --output DP-0 --off
+    xrandr --output DP-1 --off 
+    xrandr --output DP-2 --off 
+    xrandr --output HDMI-0 --off 
+    xrandr --output DP-3 --off
+    xrandr --output DP-4 --off
+}
+
+options="laptop
+dual_monitor
+"
+
+display_setup=$(menu "Display setup: " "${options}")
+case "$display_setup" in
+
+  "laptop")
+    # turn_off_all_outputs
+    xrandr --output DP-4.1.5 --off --output DP-4.2 --off --output DP-0 --off --output DP-1 --off --output DP-2 --off --output HDMI-0 --off --output DP-3 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-4 --off
+    feh --bg-scale "${wallpaper}"
+    ;;
+
+  "dual_monitor")
+    # turn_off_all_outputs
+    xrandr --output DP-4.1.5 --mode 1920x1080 --pos 0x120 --rotate left --output DP-4.2 --off --output DP-0 --mode 3840x2160 --pos 1440x0 --rotate normal --output DP-1 --off --output DP-2 --off --output HDMI-0 --off --output DP-3 --primary --mode 1920x1080 --pos 2338x2160 --rotate normal --output DP-4 --off
+    feh --bg-scale "${wallpaper}"
+    ;;
+
+esac
+
+
