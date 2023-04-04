@@ -82,6 +82,8 @@ map <Leader>e <Action>(SelectInProjectView)
 nnoremap <Leader>4 :action EditSource<CR>
 map <Leader>[ <Action>(MethodUp)
 map <Leader>] <Action>(MethodDown)
+map <Leader>k <Action>(MethodUp)
+map <Leader>j <Action>(MethodDown)
 
 " Debugging
 map <Leader>db <Action>(ToggleLineBreakpoint)
