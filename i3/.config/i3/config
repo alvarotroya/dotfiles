@@ -198,6 +198,7 @@ bindsym $mod+Shift+r restart
 # Bind applications to workspaces
 assign [class="Slack"] $ws10
 assign [class="Spotify"] $ws4 # doesn't work
+assign [class="MongoDB Compass"] $ws4 
 assign [class="Brave-browser"] $ws9
 assign [class="Google-chrome"] $ws1
 assign [class="jetbrains-pycharm"] $ws3
@@ -285,10 +286,11 @@ bindsym $mod+Shift+e mode "$mode_system"
 
 
 # Common places to open in editor
-set $mode_editor Open in editor: (v) lvim, (b) bashrc, (i) i3config, (p) profile, (z) zshrc, (a) zsh_aliases (e) zshenv
+set $mode_editor Open in editor: (v) lvim, (b) bashrc, (i) i3config, (p) profile, (z) zshrc, (a) zsh_aliases (e) zshenv, (s) ssh_config
 mode "$mode_editor" {
     bindsym v exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim', mode "default"
     bindsym b exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.bashrc', mode "default"
+    bindsym s exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.ssh/config', mode "default"
     bindsym z exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.zshrc', mode "default"
     bindsym a exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.zsh_aliases', mode "default"
     bindsym e exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.zshenv', mode "default"
