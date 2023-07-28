@@ -47,7 +47,7 @@ noremap <Leader>fa :action GotoAction<CR>
 noremap <Leader>ff :action GotoFile<CR>
 noremap <Leader>fc :action GotoClass<CR>
 noremap <Leader>fr :action RecentFiles<CR>
-noremap <Leader>fe :action RecentFiles<CR>
+noremap <Leader>fe :action GotoFile<CR>
 noremap <Leader>fs :action GotoSymbol<CR>
 noremap <Leader>ft :action FindInPath<CR>
 noremap <Leader>tj :action GotoNextError<CR>
