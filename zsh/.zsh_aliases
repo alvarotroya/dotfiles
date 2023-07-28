@@ -5,19 +5,23 @@ alias ll='ls -al'
 alias gcm='git checkout master'
 alias gpm='git checkout master && git pull && git checkout -'
 alias gs='git status'
+alias gd='git diff'
+alias gl='git log'
 
 # Common directories
 alias cdg='cd $HOME/repos/qm/goliat'
 alias rps='cd $(find $HOME/repos -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
 alias dfs='cd $(find $HOME/repos/mine/dotfiles -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
 alias data='cd $(find $HOME/data -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
-alias gwt='cd $(cd $GOLIAT && git worktree list | sort | fzf --height=~10 --header="Change to another git worktree" | cut -d " " -f 1)'
+alias gwt='cd $(cd $GOLIAT && git worktree list | (cd .. && cd baked-beans-frontend && git worktree list; cat -) | sort | fzf --height=~10 --header="Change to another git worktree" | cut -d " " -f 1)'
 
 # Conda
 alias ca='conda activate'
 alias qm-dev='conda activate qm-dev'
 
 # Docker shortcuts
+alias dc='docker compose'
+alias docker-compose='docker compose'
 alias stop-all-docker-containers='docker stop $(docker ps -q)'
 alias remove-all-docker-containers='docker rm $(docker ps -qa)'
 alias pause-all-docker-containers='docker pause $(docker ps -q)'
