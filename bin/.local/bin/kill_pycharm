@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# check if process name was supplied
+if [ -z "$1" ]; then
+  echo "Usage: kill_process.sh <process-name>"
+  exit 1
+fi
+
+# get all PIDs of the process along with full command line
+output=$(ps aux | grep -i $1 | grep -v grep)
+
+# check if process is running
+if [ -z "$output" ]; then
+  echo "No process found with name: $1"
+  exit 1
+fi
+
+# read every line of output
+echo "$output" | while read line; do
+  pid=$(echo $line | awk '{print $2}')  # extract PID
+  cmdline=$(echo $line | awk '{print $NF}' | cut -c 1-100)  # extract command line and truncate to first 100 characters
+
+  # kill the process
+  kill -9 $pid
+
+  # print information
+  echo "Killed process with PID: $pid, Command: $cmdline"
+done
+
+exit 0
