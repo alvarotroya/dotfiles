@@ -31,6 +31,11 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# ZSH autosuggestions config
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+bindkey '^H' backward-word
+bindkey '^L' forward-word
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/alvaro/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
