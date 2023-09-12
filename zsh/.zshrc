@@ -39,6 +39,9 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 bindkey '^H' backward-word
 bindkey '^L' forward-word
 
+# Cargo
+[ -f ~/.cargo/env ] && source ~/.cargo/env
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/alvaro/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
