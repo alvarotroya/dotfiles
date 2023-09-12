@@ -13,6 +13,7 @@ stow zsh -t ~/
 will stow the zsh config files.
 
 For zsh:
+- Install Zellij binary from here: https://github.com/zellij-org/zellij
 - Install powerline10K from here: https://github.com/romkatv/powerlevel10k
 - Install zsh-autosuggestions from here: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#manual-git-clone
 
