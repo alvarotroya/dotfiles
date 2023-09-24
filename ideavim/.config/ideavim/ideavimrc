@@ -33,7 +33,7 @@ let mapleader = " "
 map <Esc><Esc> :w<CR>
 
 " reload ideavimrc
-nnoremap <Leader>R :source ~/.ideavimrc<CR>
+nnoremap <Leader>R :source ~/.config/ideavim/ideavimrc<CR>
 
 " Yank from cursor to end of line, to be consistent with C and D.
 nnoremap Y y$
@@ -50,6 +50,9 @@ noremap <Leader>fr :action RecentFiles<CR>
 noremap <Leader>fe :action RecentFiles<CR>
 noremap <Leader>fs :action GotoSymbol<CR>
 noremap <Leader>ft :action FindInPath<CR>
+nmap <Leader>fw <Plug>(easymotion-bd-w)
+nmap <Leader>fk <Plug>(easymotion-F)
+nmap <Leader>fj <Plug>(easymotion-f)
 noremap <Leader>tj :action GotoNextError<CR>
 noremap <Leader>tk :action GotoPreviousError<CR>
 map <Leader>i <Action>(QuickImplementations)
@@ -70,7 +73,8 @@ noremap <Leader>lm :action ExtractMethod<CR>
 noremap <Leader>lr :action RenameElement<CR>
 
 " Alt + Shift + Insert in idea. 
-map <Leader>v :action EditorToggleColumnMode<CR>
+" map <Leader>v :action EditorToggleColumnMode<CR>
+map <Leader>x <C-V>
 
 " ===================== 
 "     NAVIGATION

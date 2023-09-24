@@ -8,6 +8,8 @@ alias gpm='git checkout master && git pull && git checkout -'
 alias gs='git status'
 alias gd='git diff'
 alias gl='git log'
+alias gco='git co $(git branch | sort | fzf --height=~20 --header="Checkout branch")'
+alias glb='git co $(git lb | cut -d ":" -f 2 | sed "s/\s//g" | sort | fzf --height=~20 --header="Checkout branch")'
 
 # Common directories
 alias cdg='cd $HOME/repos/qm/goliat'
