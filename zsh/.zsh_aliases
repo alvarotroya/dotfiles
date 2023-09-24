@@ -1,5 +1,6 @@
 # General
 alias ll='ls -al'
+alias vim='nvim'
 
 # Git
 alias gcm='git checkout master'

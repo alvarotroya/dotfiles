@@ -1,4 +1,24 @@
 # dotfiles
+
+My configuration files, always a WIP.
+
+## Setting things up
+
+Clone down this directory and stow the config files you're interested in, e.g.
+
+```
+stow zsh -t ~/
+```
+
+will stow the zsh config files.
+
+For zsh:
+- Install Zellij binary from here: https://github.com/zellij-org/zellij
+- Install powerline10K from here: https://github.com/romkatv/powerlevel10k
+- Install zsh-autosuggestions from here: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#manual-git-clone
+
+## Everything below is outdated ^^
+
 My dotfiles. i3gaps + vim + oh-my-zsh + tmux + dunst + arrow keys on home row.
 
 ## Personalization
@@ -89,4 +109,5 @@ Install openbox arc-dark theme
 - [ ] Include X230 dotfiles
 - [ ] Improve zsh setup
 - [ ] Clean up README and bash_aliases
+- [ ] Update README
 

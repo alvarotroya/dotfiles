@@ -1,3 +1,6 @@
+# ZELLIJ
+eval "$(zellij setup --generate-auto-start zsh)"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -30,6 +33,14 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# ZSH autosuggestions config
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+bindkey '^H' backward-word
+bindkey '^L' forward-word
+
+# Cargo
+[ -f ~/.cargo/env ] && source ~/.cargo/env
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
