@@ -203,6 +203,8 @@ assign [class="Brave-browser"] $ws9
 assign [class="Google-chrome"] $ws1
 assign [class="jetbrains-pycharm"] $ws3
 assign [class="jetbrains-idea-ce"] $ws3
+assign [class="Xephyr"] $ws9
+assign [class="Render Viewer"] $ws9
 
 for_window [class="copyq"] floating enable
 

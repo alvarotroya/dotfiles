@@ -1,6 +1,7 @@
 # General
 alias ll='ls -al'
 alias vim='nvim'
+alias xclip='xclip -selection clipboard'
 
 # Git
 alias gcm='git checkout master'
@@ -9,7 +10,7 @@ alias gs='git status'
 alias gd='git diff'
 alias gl='git log'
 alias gco='git co $(git branch | sort | fzf --height=~20 --header="Checkout branch")'
-alias glb='git co $(git lb | cut -d ":" -f 2 | sed "s/\s//g" | sort | fzf --height=~20 --header="Checkout branch")'
+alias glb='git co $(git lb | cut -d ":" -f 2 | sed "s/\s//g" | fzf --height=~20 --header="Checkout branch")'
 
 # Common directories
 alias cdg='cd $HOME/repos/qm/goliat'
@@ -21,6 +22,10 @@ alias gwt='cd $(cd $GOLIAT && git worktree list | (cd .. && cd baked-beans-front
 # Conda
 alias ca='conda activate'
 alias qm-dev='conda activate qm-dev'
+
+# Mamba
+alias mb='mamba'
+alias ma='mamba activate'
 
 # Docker shortcuts
 alias dc='docker compose'

@@ -9,10 +9,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # The following lines were added by compinstall
-
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**'
 zstyle :compinstall filename '/home/alvaro/.zshrc'
+
+autoload -U edit-command-line
+zle -N edit-command-line 
+bindkey -M vicmd v edit-command-line
 
 autoload -Uz compinit
 compinit
@@ -44,17 +47,21 @@ bindkey '^L' forward-word
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/alvaro/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/alvaro/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/alvaro/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/alvaro/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/alvaro/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/home/alvaro/miniforge3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/alvaro/miniconda3/bin:$PATH"
+        export PATH="/home/alvaro/miniforge3/bin:$PATH"
     fi
 fi
 unset __conda_setup
+
+if [ -f "/home/alvaro/miniforge3/etc/profile.d/mamba.sh" ]; then
+    . "/home/alvaro/miniforge3/etc/profile.d/mamba.sh"
+fi
 # <<< conda initialize <<<
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!

@@ -47,7 +47,8 @@ noremap <Leader>fa :action GotoAction<CR>
 noremap <Leader>ff :action GotoFile<CR>
 noremap <Leader>fc :action GotoClass<CR>
 noremap <Leader>fr :action RecentFiles<CR>
-noremap <Leader>fe :action RecentFiles<CR>
+" noremap <Leader>fe :action RecentFiles<CR>
+noremap <Leader>fe :action GotoFile<CR>
 noremap <Leader>fs :action GotoSymbol<CR>
 noremap <Leader>ft :action FindInPath<CR>
 nmap <Leader>fw <Plug>(easymotion-bd-w)
@@ -61,6 +62,8 @@ map <Leader>i <Action>(QuickImplementations)
 nnoremap <Leader>zen :action ToggleZenMode<CR>
 nnoremap <Leader>zoom :action TogglePresentationMode<CR>
 nnoremap <Leader>pres :action TogglePresentationMode<CR>
+nnoremap <Leader>foc :action HideAllWindows<CR>
+nnoremap <Leader>full :action TogglePresentationMode<CR>
 
 " ===================== 
 "     REFACTORING
@@ -95,6 +98,7 @@ map <Leader>dd <Action>(Debug)
 map <Leader>d. <Action>(DebugClass)
 map <Leader>dx <Action>(ChooseDebugConfiguration)
 map <Leader>dr <Action>(Resume)
+map <Leader>dn <Action>(Resume)
 map <Leader>ds <Action>(Stop)
 map <Leader>di <Action>(StepInto)
 map <Leader>do <Action>(StepOver)
@@ -155,6 +159,7 @@ nnoremap gr :action ShowUsages<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap <Leader>la :action ShowIntentionActions<CR>
 nnoremap <Leader>ls :action FileStructurePopup<CR>
+nnoremap <Leader>/  :action FileStructurePopup<CR>
 nnoremap <Leader>ld :action QuickDefinition<CR>
 
 " Folding
