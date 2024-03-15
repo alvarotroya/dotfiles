@@ -44,7 +44,8 @@ nnoremap Y y$
 noremap <Leader>/ :action GotoAction<CR>
 noremap <Leader>f/ :action GotoAction<CR>
 noremap <Leader>fa :action GotoAction<CR>
-noremap <Leader>ff :action GotoFile<CR>
+" noremap <Leader>ff :action GotoFile<CR>
+noremap <Leader>ff :action SearchEverywhere<CR>
 noremap <Leader>fc :action GotoClass<CR>
 noremap <Leader>fr :action RecentFiles<CR>
 " noremap <Leader>fe :action RecentFiles<CR>

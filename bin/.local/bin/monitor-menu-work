@@ -67,10 +67,11 @@ case "$display_setup" in
   "qm_office_dual")
     # turn_off_all_outputs
     # xrandr --output DP-0 --mode 3840x2160 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off --output HDMI-0 --off --output DP-3 --primary --mode 1920x1080 --pos 2536x2160 --rotate normal --output DP-4 --mode 3840x2160 --pos 3840x0 --rotate normal --output DP-4.2 --off --output DP-4.1.5 --off
-    xrandr --output DP-0 --mode 3840x2160 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off --output HDMI-0 --mode 3840x2160 --pos 3840x0 --rotate normal --output DP-3 --primary --mode 1920x1080 --pos 2523x2160 --rotate normal --output DP-4 --off
+    # doesn't work for some weird reason with HDMI position, possibly due to latency
+    # xrandr --output DP-0 --mode 3840x2160 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off --output HDMI-0 --mode 3840x2160 --pos 3840x0 --rotate normal --output DP-3 --primary --mode 1920x1080 --pos 2523x2160 --rotate normal --output DP-4 --off
+    xrandr --output DP-4.1.5 --off --output DP-4.2 --off --output DP-0 --mode 3840x2160 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off --output HDMI-0 --mode 3840x2160 --pos 5120x720 --rotate normal --output DP-3 --primary --mode 1920x1080 --pos 4241x2880 --rotate normal --output DP-4 --off
+
     feh --bg-scale "${wallpaper}"
     customkeymaps
     ;;
 esac
-
-#!/bin/sh

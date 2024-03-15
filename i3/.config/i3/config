@@ -290,15 +290,15 @@ bindsym $mod+Shift+e mode "$mode_system"
 # Common places to open in editor
 set $mode_editor Open in editor: (v) lvim, (b) bashrc, (i) i3config, (p) profile, (z) zshrc, (a) zsh_aliases (e) zshenv, (s) ssh_config
 mode "$mode_editor" {
-    bindsym v exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim', mode "default"
-    bindsym b exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.bashrc', mode "default"
-    bindsym s exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.ssh/config', mode "default"
-    bindsym z exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.zshrc', mode "default"
-    bindsym a exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.zsh_aliases', mode "default"
-    bindsym e exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.zshenv', mode "default"
-    bindsym p exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.profile', mode "default"
-    bindsym i exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.config/i3/config', mode "default"
-    bindsym Shift+i exec --no-startup-id gnome-terminal -- /bin/sh -c 'lvim ~/.config/ideavim/ideavimrc', mode "default"
+    bindsym v exec --no-startup-id gnome-terminal -- /bin/sh -c 'vim', mode "default"
+    bindsym b exec --no-startup-id gnome-terminal -- /bin/sh -c 'vim ~/.bashrc', mode "default"
+    bindsym s exec --no-startup-id gnome-terminal -- /bin/sh -c 'vim ~/.ssh/config', mode "default"
+    bindsym z exec --no-startup-id gnome-terminal -- /bin/sh -c 'vim ~/.zshrc', mode "default"
+    bindsym a exec --no-startup-id gnome-terminal -- /bin/sh -c 'vim ~/.zsh_aliases', mode "default"
+    bindsym e exec --no-startup-id gnome-terminal -- /bin/sh -c 'vim ~/.zshenv', mode "default"
+    bindsym p exec --no-startup-id gnome-terminal -- /bin/sh -c 'vim ~/.profile', mode "default"
+    bindsym i exec --no-startup-id gnome-terminal -- /bin/sh -c 'vim ~/.config/i3/config', mode "default"
+    bindsym Shift+i exec --no-startup-id gnome-terminal -- /bin/sh -c 'vim ~/.config/ideavim/ideavimrc', mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

@@ -15,6 +15,7 @@ alias glb='git co $(git lb | cut -d ":" -f 2 | sed "s/\s//g" | fzf --height=~20 
 # Common directories
 alias cdg='cd $HOME/repos/qm/goliat'
 alias goliat='cd $HOME/repos/qm/goliat'
+alias dotfiles='cd $HOME/repos/mine/dotfiles/'
 alias rps='cd $(find $HOME/repos -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
 alias dfs='cd $(find $HOME/repos/mine/dotfiles -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
 alias data='cd $(find $HOME/data -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
