@@ -24,7 +24,7 @@ font pango:FiraCode Nerd Font 9
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -164,6 +164,12 @@ bindsym $mod+Shift+comma move workspace to output $mon0
 bindsym $mod+Shift+period move workspace to output $mon1
 bindsym $mod+Shift+slash move workspace to output $mon2
 
+# move current workspace between monitors
+bindsym $mod+Control+h move workspace to output left
+bindsym $mod+Control+j move workspace to output down
+bindsym $mod+Control+k move workspace to output up
+bindsym $mod+Control+l move workspace to output right
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -270,15 +276,24 @@ bar {
 }
 
 #Logout, Restart, Shutdown menu
-set $Locker i3lock --color "#2f343f" && sleep 1
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $Locker betterlockscreen -l dim
+bindsym $mod+shift+x exec betterlockscreen -l dim
+# set desktop background with custom effect
+exec --no-startup-id betterlockscreen -w dim
+
+# Alternative (set last used background)
+# exec --no-startup-id source ~/.fehbg
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown, (d) dock, (u) undock
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && sudo systemctl hibernate, mode "default"
+    bindsym s exec --no-startup-id $Locker & systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker & sudo systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id sudo shutdown -h now, mode "default"  
+    bindsym u exec --no-startup-id systemctl reboot, mode "default"
+    bindsym d exec --no-startup-id systemctl reboot, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

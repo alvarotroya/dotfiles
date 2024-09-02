@@ -1,11 +1,15 @@
 # General
 alias ll='ls -al'
-alias vim='nvim'
+alias vim='nvim-kickstart'
 alias xclip='xclip -selection clipboard'
+alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 
 # Git
 alias gcm='git checkout master'
+alias gmm='git merge master'
+alias grm='git rebase master'
 alias gpm='git checkout master && git pull && git checkout -'
+alias gnb='git checkout master && git pull && git checkout -b'
 alias gs='git status'
 alias gd='git diff'
 alias gl='git log'
@@ -15,6 +19,7 @@ alias glb='git co $(git lb | cut -d ":" -f 2 | sed "s/\s//g" | fzf --height=~20 
 # Common directories
 alias cdg='cd $HOME/repos/qm/goliat'
 alias goliat='cd $HOME/repos/qm/goliat'
+alias bbf='cd $HOME/repos/qm/baked-beans-frontend'
 alias dotfiles='cd $HOME/repos/mine/dotfiles/'
 alias rps='cd $(find $HOME/repos -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
 alias dfs='cd $(find $HOME/repos/mine/dotfiles -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'

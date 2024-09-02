@@ -88,8 +88,8 @@ map <Leader>x <C-V>
 nnoremap <Leader>1 :action SelectIn<CR>
 map <Leader>e <Action>(SelectInProjectView)
 nnoremap <Leader>4 :action EditSource<CR>
-map <Leader>[ <Action>(MethodUp)
-map <Leader>] <Action>(MethodDown)
+map ]m <Action>(MethodUp)
+map [m <Action>(MethodDown)
 map <Leader>k <Action>(MethodUp)
 map <Leader>j <Action>(MethodDown)
 
