@@ -75,4 +75,4 @@ export NVM_DIR="$HOME/.nvm"
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
-
+export BAT_THEME="base16"
