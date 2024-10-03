@@ -1,8 +1,12 @@
 # General
-alias ll='ls -al'
-alias vim='nvim-kickstart'
+alias vim='nvim'
 alias xclip='xclip -selection clipboard'
 alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
+
+# Eza
+alias ls='eza'
+alias ll='eza -l'
+alias la='eza -la'
 
 # Git
 alias gcm='git checkout master'
