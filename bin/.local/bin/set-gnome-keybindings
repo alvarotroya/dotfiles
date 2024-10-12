@@ -1,14 +1,24 @@
 #!/bin/bash
 
-for i in {1..10}
-do
-    let iMod10=$i%10
-    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-$i "['<Super>$iMod10']"
-    gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-$i "['<Super><Shift>$iMod10']"
-done
+# set -x
+set -e
 
+echo "Setting up keybinding to close windows: <Super><Shift>q"
 gsettings set org.gnome.desktop.wm.keybindings close "['<Super><Shift>q']"
+
+echo "Setting up keybinding to toggle fullscreen: <Super>f"
 gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Super>f']"
 
+echo "Setting up workspace preferences: dynamic-workspaces=false, num-workspaces=10"
+gsettings set org.gnome.mutter dynamic-workspaces false
+gsettings set org.gnome.desktop.wm.preferences num-workspaces 10
 
+for i in {1..10}; do
+    echo "Setting up keybindings for workspace ${i}..."
+    let ws_num=$((i % 10))
+    [[ ws_num -ne 0 ]] && gsettings set org.gnome.shell.seybindings switch-to-application-${i} "[]"
+    gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-${i} "['<Super><Shift>${ws_num}']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-${i} "['<Super>${ws_num}']"
+done
 
+echo "Successfully set up i3-like keybindings for Gnome shell."
