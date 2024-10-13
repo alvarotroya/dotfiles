@@ -1,0 +1,33 @@
+#!/usr/bin/bash
+
+function ctrl_c() {
+	# drop to usual prompt (no tmux)
+	exit 1;
+}
+
+trap ctrl_c SIGINT
+
+no_of_sessions=$(tmux list-sessions | wc -l)
+IFS=$'\n'
+output=($(tmux list-sessions))
+output_names=($(tmux list-sessions -F\#S))
+k=0
+echo "Choose the session to attach: "
+for i in "${output[@]}"; do
+	echo "$k - $i"
+	((k++))
+done
+echo
+echo "Create a new session by entering a name for it"
+read -r input
+if [[ $input == "" ]]; then
+	tmux new-session
+elif [[ $input == 'nil' ]]; then
+	exit 1
+elif [[ $input =~ ^[0-9]+$ ]] && [[ $input -le $no_of_sessions ]]; then
+	terminal_name="${output_names[input - 1]}"
+	tmux attach -t "$terminal_name"
+else
+	tmux new-session -s "$input"
+fi
+exit 0
