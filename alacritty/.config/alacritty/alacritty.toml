@@ -1,5 +1,9 @@
-[font.normal]
-family = "MesloLGS NF"
+[font]
+normal.family = "JetBrainsMono Nerd Font"
 
 [window]
 opacity = 0.95
+
+# [shell]
+# program = "/bin/zsh"
+# args = ["-l", "-c", "tmux attach -t 0 || (tmux; exec zsh; exec zsh)"]
