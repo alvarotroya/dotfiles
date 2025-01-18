@@ -3,6 +3,10 @@ alias vim='nvim'
 alias xclip='xclip -selection clipboard'
 alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 
+# todo cli
+alias todo='vim $(pwd)/todo.md' # should automatically look for nearest todo.md file
+alias todos='vim $(pwd)/todo.md' # should automatically look for nearest todo.md file
+
 # Eza
 alias ls='eza'
 alias ll='eza -l'
@@ -21,7 +25,7 @@ alias gco='git co $(git branch | sort | fzf --height=~20 --header="Checkout bran
 alias glb='git co $(git lb | cut -d ":" -f 2 | sed "s/\s//g" | fzf --height=~20 --header="Checkout branch")'
 
 # Common directories
-alias cdg='cd $HOME/repos/qm/goliat'
+alias cdg='cd $(git rev-parse --show-toplevel 2>/dev/null || echo "$PWD")'
 alias goliat='cd $HOME/repos/qm/goliat'
 alias bbf='cd $HOME/repos/qm/baked-beans-frontend'
 alias dotfiles='cd $HOME/repos/mine/dotfiles/'

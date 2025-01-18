@@ -39,9 +39,10 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
 [ -f ~/.zshenv ] && source ~/.zshenv
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
+# [ -f ~/.zsh-vi-mode/zsh-vi-mode.plugin.zsh ] && source ~/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#
 # ZSH autosuggestions config
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 bindkey '^H' backward-word
@@ -69,6 +70,10 @@ if [ -f "/home/alvaro/miniforge3/etc/profile.d/mamba.sh" ]; then
 fi
 # <<< conda initialize <<<
 
+# UV base environment
+[ -f ~/.venv/bin/activate ] && source ~/.venv/bin/activate
+
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -86,3 +91,6 @@ source <(fzf --zsh)
 export BAT_THEME="base16"
 
 . "$HOME/.cargo/env"
+FPATH="$HOME/.docker/completions:$FPATH"
+autoload -Uz compinit
+compinit
