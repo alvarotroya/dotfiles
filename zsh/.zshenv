@@ -1,7 +1,7 @@
 export XDG_CONFIG_HOME=$HOME/.config
 
 
-export EDITOR=/usr/local/bin/nvim
+export EDITOR=$(which nvim)
 export GOPATH=/usr/local/bin/go
 export DAVID_TENGO_BIN=$HOME/repos/tengo/tengo
 export GOLIAT=$HOME/repos/qm/goliat

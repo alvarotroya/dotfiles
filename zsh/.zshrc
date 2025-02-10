@@ -8,9 +8,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [[ ! -v TMUX && $TERM_PROGRAM != "vscode" ]]; then
-	tmux_chooser && exit
-fi
+# if [[ ! -v TMUX && $TERM_PROGRAM != "vscode" ]]; then
+# 	tmux_chooser && exit
+# fi
 
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
@@ -83,6 +83,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [ -s "$NVM_DIR/zsh_completion" ] && \. "$NVM_DIR/zsh_completion"  # This loads nvm zsh_completion
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
@@ -92,5 +97,7 @@ export BAT_THEME="base16"
 
 . "$HOME/.cargo/env"
 FPATH="$HOME/.docker/completions:$FPATH"
+FPATH="$HOME/.zsh/zsh-completions:$FPATH"
+
 autoload -Uz compinit
 compinit
