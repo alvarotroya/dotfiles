@@ -71,7 +71,7 @@ fi
 # <<< conda initialize <<<
 
 # UV base environment
-[ -f ~/.venv/bin/activate ] && source ~/.venv/bin/activate
+# [ -f ~/.venv/bin/activate ] && source ~/.venv/bin/activate
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -101,3 +101,4 @@ FPATH="$HOME/.zsh/zsh-completions:$FPATH"
 
 autoload -Uz compinit
 compinit
+fpath+=/opt/homebrew/share/zsh/site-functions

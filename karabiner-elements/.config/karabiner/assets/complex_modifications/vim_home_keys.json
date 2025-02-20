@@ -1,0 +1,83 @@
+{
+    "description": "Caps Lock as Escape when tapped, as meh when held, as arrows when held with HJKL, and Navigation with UIOP",
+    "manipulators": [
+        {
+            "from": {
+                "key_code": "caps_lock",
+                "modifiers": { "optional": ["any"] }
+            },
+            "to": [
+                {
+                    "key_code": "left_control",
+                    "modifiers": ["left_shift", "left_option"]
+                }
+            ],
+            "to_if_alone": [{ "key_code": "escape" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "h",
+                "modifiers": { "mandatory": ["left_control", "left_shift", "left_option"] }
+            },
+            "to": [{ "key_code": "left_arrow" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "j",
+                "modifiers": { "mandatory": ["left_control", "left_shift", "left_option"] }
+            },
+            "to": [{ "key_code": "down_arrow" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "k",
+                "modifiers": { "mandatory": ["left_control", "left_shift", "left_option"] }
+            },
+            "to": [{ "key_code": "up_arrow" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "l",
+                "modifiers": { "mandatory": ["left_control", "left_shift", "left_option"] }
+            },
+            "to": [{ "key_code": "right_arrow" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "y",
+                "modifiers": { "mandatory": ["left_control", "left_shift", "left_option"] }
+            },
+            "to": [{ "key_code": "home" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "u",
+                "modifiers": { "mandatory": ["left_control", "left_shift", "left_option"] }
+            },
+            "to": [{ "key_code": "page_down" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "i",
+                "modifiers": { "mandatory": ["left_control", "left_shift", "left_option"] }
+            },
+            "to": [{ "key_code": "page_up" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "o",
+                "modifiers": { "mandatory": ["left_control", "left_shift", "left_option"] }
+            },
+            "to": [{ "key_code": "end" }],
+            "type": "basic"
+        }
+    ]
+}
