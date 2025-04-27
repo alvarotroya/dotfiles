@@ -5,8 +5,20 @@
 [credential]
 	helper = store
 
+[core]
+	autocrlf = input
+
+[init]
+	defaultBranch = main
+
+[push]
+  autoSetupRemote	= true
+
 [pull]
 	ff = true
+
+[rerere]
+	enabled = true
 
 [alias]
 	co = checkout
@@ -19,9 +31,3 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 20 | awk -F' ~ HEAD@{' '{printf(\"  %s:  %s\\n\", substr($2, 1, length($2)-1), $1)}'
-[core]
-	autocrlf = input
-[rerere]
-	enabled = true
-[init]
-	defaultBranch = main
