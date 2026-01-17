@@ -60,7 +60,7 @@ noremap <Leader>tk :action GotoPreviousError<CR>
 map <Leader>i <Action>(QuickImplementations)
 
 " misc actions
-nnoremap <Leader>zen :action ToggleZenMode<CR>
+nnoremap <Leader>zen :action ToggleDistractionFreeMode<CR>
 nnoremap <Leader>zoom :action TogglePresentationMode<CR>
 nnoremap <Leader>pres :action TogglePresentationMode<CR>
 nnoremap <Leader>foc :action HideAllWindows<CR>
