@@ -156,4 +156,4 @@ export BAT_THEME="base16"
 
 . "$HOME/.atuin/bin/env"
 
-eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(atuin init zsh)"
