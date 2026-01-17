@@ -1,16 +1,9 @@
-# ZELLIJ
-# eval "$(zellij setup --generate-auto-start zsh)"
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# if [[ ! -v TMUX && $TERM_PROGRAM != "vscode" ]]; then
-# 	tmux_chooser && exit
-# fi
 
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
@@ -65,28 +58,6 @@ bindkey '^ ' forward-word
 # Cargo
 [ -f ~/.cargo/env ] && source ~/.cargo/env
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/alvaro/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/alvaro/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/home/alvaro/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/alvaro/miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-if [ -f "/home/alvaro/miniforge3/etc/profile.d/mamba.sh" ]; then
-    . "/home/alvaro/miniforge3/etc/profile.d/mamba.sh"
-fi
-# <<< conda initialize <<<
-
-# UV base environment
-# [ -f ~/.venv/bin/activate ] && source ~/.venv/bin/activate
-
 export NVM_DIR="$HOME/.nvm"
 
 nvm() {
@@ -112,6 +83,14 @@ export BAT_THEME="base16"
 . "$HOME/.cargo/env"
 FPATH="$HOME/.docker/completions:$FPATH"
 FPATH="$HOME/.zsh/zsh-completions:$FPATH"
+
+# ${UserConfigDir}/zsh/.zshrc
+autoload -U compinit && compinit
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
+
+zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
 
 # Setup zoxide
 eval "$(zoxide init zsh)"
