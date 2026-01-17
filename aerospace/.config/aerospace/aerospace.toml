@@ -37,6 +37,7 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center']
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -57,11 +58,11 @@ preset = 'qwerty'
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
 inner.horizontal = 10
-inner.vertical =   10
-outer.left =       10
-outer.bottom =     10
-outer.top =        10
-outer.right =      10
+inner.vertical = 10
+outer.left = 10
+outer.bottom = 10
+outer.top = 10
+outer.right = 10
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -114,7 +115,7 @@ alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#fullscreen
-alt-f = 'fullscreen'
+alt-f = 'layout accordion vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
@@ -179,46 +180,46 @@ shift-down = ['volume set 0', 'mode main']
 #     run = ['layout floating', 'move-node-to-workspace S']  # The callback itself
 
 [[on-window-detected]]
-    if.app-id = 'com.google.Chrome'
-    run = 'move-node-to-workspace 1'
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-    if.app-id = 'org.alacritty'
-    run = 'move-node-to-workspace 2'
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
-    if.app-name-regex-substring = 'IntelliJ|PyCharm'
-    run = 'move-node-to-workspace 3' 
+if.app-name-regex-substring = 'IntelliJ|PyCharm'
+run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-    if.app-id = 'com.jetbrains.pycharm.ce'
-    run = 'move-node-to-workspace 3' 
+if.app-id = 'com.jetbrains.pycharm.ce'
+run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-    if.app-id = 'com.spotify.client'
-    run = 'move-node-to-workspace 4' 
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
-    if.app-id = 'com.microsoft.Outlook'
-    run = 'move-node-to-workspace 5' 
+if.app-id = 'com.microsoft.Outlook'
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
-    if.app-id = 'com.brave.Browser'
-    run = 'move-node-to-workspace 9' 
+if.app-id = 'com.brave.Browser'
+run = 'move-node-to-workspace 9'
 
 [[on-window-detected]]
-    if.app-id = 'com.microsoft.teams2'
-    run = 'move-node-to-workspace 10' 
+if.app-id = 'com.microsoft.teams2'
+run = 'move-node-to-workspace 10'
 
 
 [workspace-to-monitor-force-assignment]
-    1 = 'main'                            # Monitor sequence number from left to right. 1-based indexing
-    2 = 'main'                       # Main monitor
-    # 3 = 'secondary'                  # Non-main monitor in case when there are only two monitors
-    4 = '27EA'                   # Case insensitive regex substring
-    5 = '27EA'                   # Case insensitive regex substring
-    6 = '27EA'                   # Case insensitive regex substring
-    9 = '^built-in retina display$'  # Case insensitive regex match
-    0 = '^built-in retina display$'  # Case insensitive regex match
-    # 6 = ['secondary', 'dell']        # You can specify multiple patterns.
-                                     #   The first matching pattern will be used
+# 1 = 'main'                            # Monitor sequence number from left to right. 1-based indexing
+# 2 = 'main'                       # Main monitor
+# 3 = 'secondary'                  # Non-main monitor in case when there are only two monitors
+# 4 = '27EA'                   # Case insensitive regex substring
+# 5 = '27EA'                   # Case insensitive regex substring
+# 6 = '27EA'                   # Case insensitive regex substring
+# 9 = '^built-in retina display$'  # Case insensitive regex match
+# 0 = '^built-in retina display$'  # Case insensitive regex match
+# 6 = ['secondary', 'dell']        # You can specify multiple patterns.
+#   The first matching pattern will be used
