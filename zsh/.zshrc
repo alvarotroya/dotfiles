@@ -15,6 +15,37 @@ SAVEHIST=1000000
 setopt autocd extendedglob nomatch notify globdots
 unsetopt beep
 bindkey -v
+# --------------------------------------------------
+# Cursor shape for vi-mode (Powerlevel10k compatible)
+# --------------------------------------------------
+
+function _set_cursor_block() {
+  printf '\033[2 q'
+}
+
+function _set_cursor_beam() {
+  printf '\033[6 q'
+}
+
+function _vi_cursor_hook() {
+  case $KEYMAP in
+    vicmd) _set_cursor_block ;;
+    viins|main) _set_cursor_beam ;;
+  esac
+}
+
+autoload -Uz add-zle-hook-widget
+add-zle-hook-widget keymap-select _vi_cursor_hook
+add-zle-hook-widget line-init _set_cursor_beam
+
+# Always fix cursor before each prompt (tmux + Ctrl-C safe)
+precmd() {
+  _set_cursor_beam
+}
+
+# Disable ':' execute prompt in vi normal mode
+bindkey -M vicmd ':' undefined-key
+
 
 # --------------------------------------------------
 # Completion paths (MINIMAL – Carapace does the work)
@@ -89,6 +120,7 @@ source <(carapace _carapace)
 bindkey '^H' backward-word
 bindkey '^ ' forward-word
 bindkey '^F' forward-word
+bindkey '^G' forward-char
 
 # Word-wise navigation (Meta / Option)
 bindkey '^[b' backward-word
