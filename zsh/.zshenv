@@ -1,5 +1,11 @@
 export XDG_CONFIG_HOME=$HOME/.config
 
+export DOCKER_HOST="unix://${HOME}/.config/colima/default/docker.sock"
+export TESTCONTAINERS_HOST_OVERRIDE=127.0.0.1
+export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
+export TESTCONTAINERS_RYUK_DISABLED=true
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home
 
 export EDITOR=$(which nvim)
 export GOPATH=/usr/local/bin/go

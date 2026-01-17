@@ -8,9 +8,12 @@ alias todo='vim $(pwd)/todo.md' # should automatically look for nearest todo.md 
 alias todos='vim $(pwd)/todo.md' # should automatically look for nearest todo.md file
 
 # Eza
-alias ls='eza'
+alias ls='eza -l'
 alias ll='eza -l'
 alias la='eza -la'
+
+# Just
+alias j='just'
 
 # Git
 alias gcm='git checkout main'
@@ -22,8 +25,11 @@ alias gs='git status'
 alias gd='git diff'
 alias gl='git log'
 alias gco='git co $(git branch | sort | fzf --height=~20 --header="Checkout branch")'
-alias glb='git co $(git lb | cut -d ":" -f 2 | sed "s/\s//g" | fzf --height=~20 --header="Checkout branch")'
-
+alias glb='git co $(git lb | cut -d ":" -f 2 | fzf --height=~20 --header="Checkout branch")'
+alias gw='git worktree'
+alias gwt='cd $(git worktree list | sort | fzf --height=~10 --header="Change to another git worktree" | cut -d " " -f 1)'
+alias zr='cd "$(git rev-parse --show-toplevel 2>/dev/null)"'
+#
 # Common directories
 alias cdg='cd $(git rev-parse --show-toplevel 2>/dev/null || echo "$PWD")'
 alias goliat='cd $HOME/repos/qm/goliat'
@@ -32,7 +38,6 @@ alias dotfiles='cd $HOME/repos/mine/dotfiles/'
 alias rps='cd $(find $HOME/repos -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
 alias dfs='cd $(find $HOME/repos/mine/dotfiles -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
 alias data='cd $(find $HOME/data -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
-alias gwt='cd $(cd $GOLIAT && git worktree list | (cd .. && cd baked-beans-frontend && git worktree list; cat -) | sort | fzf --height=~10 --header="Change to another git worktree" | cut -d " " -f 1)'
 
 # Conda
 alias ca='conda activate'
@@ -56,3 +61,11 @@ alias rm-dvc='rm -rf $HOME/repos/qm/goliat/pipeline_builder/pipeline_builder/pip
 alias build-pb-goliat='DOCKER_BUILDKIT=1 docker buildx build --platform linux/amd64 -t pipeline_development_image_goliat -o type=docker -f ./pipeline_builder/docker/Dockerfile.local .'
 alias build-pb-pr-branch='DOCKER_BUILDKIT=1 docker buildx build --platform linux/amd64 -t pipeline_development_image_pr_branch -o type=docker -f ./pipeline_builder/docker/Dockerfile.local .'
 
+
+# k8s
+alias k='kubectl'
+alias k-dev='kubectl --context dev'
+alias k-test='kubectl --context test'
+alias bastion='kubectl --context  dev -n development port-forward svc/bastion 2222'
+alias bastion-ssh='ssh -N -D 3000 mongo-bastion-dev'
+alias argocd='kubectl -n argo port-forward services/argo-cd-argocd-server 8080:80'

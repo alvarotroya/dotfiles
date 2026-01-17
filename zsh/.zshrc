@@ -17,17 +17,31 @@ zstyle ':completion:*' completer _expand _complete _ignored _correct _approximat
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**'
 zstyle :compinstall filename '/home/alvaro/.zshrc'
 
+# ------------------------------
+# Completion paths (FIRST)
+# ------------------------------
+fpath=(
+  $HOME/.docker/completions
+  $HOME/.zsh/zsh-completions
+  /opt/homebrew/share/zsh/site-functions
+  $fpath
+)
+
+# ------------------------------
+# Init completion system
+# ------------------------------
+autoload -Uz compinit
+compinit -C
+
 autoload -U edit-command-line
 zle -N edit-command-line 
 bindkey -M vicmd v edit-command-line
 
-autoload -Uz compinit
-compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=1000000
+SAVEHIST=1000000
 setopt autocd extendedglob nomatch notify globdots
 unsetopt beep
 bindkey -v
@@ -46,7 +60,7 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # ZSH autosuggestions config
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 bindkey '^H' backward-word
-bindkey '^L' forward-word
+bindkey '^ ' forward-word
 
 # Cargo
 [ -f ~/.cargo/env ] && source ~/.cargo/env
@@ -73,25 +87,25 @@ fi
 # UV base environment
 # [ -f ~/.venv/bin/activate ] && source ~/.venv/bin/activate
 
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-[ -s "$NVM_DIR/zsh_completion" ] && \. "$NVM_DIR/zsh_completion"  # This loads nvm zsh_completion
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+nvm() {
+  unset -f nvm node npm npx
+  source "$NVM_DIR/nvm.sh"
+  nvm "$@"
+}
 
+node() { nvm exec node "$@"; }
+npm()  { nvm exec npm  "$@"; }
+npx()  { nvm exec npx  "$@"; }
 
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
 
 source <(fzf --zsh)
+
+# kubectl completion
+source <(kubectl completion zsh)
 
 export BAT_THEME="base16"
 
@@ -99,6 +113,5 @@ export BAT_THEME="base16"
 FPATH="$HOME/.docker/completions:$FPATH"
 FPATH="$HOME/.zsh/zsh-completions:$FPATH"
 
-autoload -Uz compinit
-compinit
-fpath+=/opt/homebrew/share/zsh/site-functions
+# Setup zoxide
+eval "$(zoxide init zsh)"
