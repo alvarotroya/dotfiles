@@ -8,6 +8,7 @@ alias todo='vim $(pwd)/todo.md' # should automatically look for nearest todo.md 
 alias todos='vim $(pwd)/todo.md' # should automatically look for nearest todo.md file
 
 # cat with syntax-highlighting, line numbers, etc...
+alias rcat='cat'
 alias cat='bat'
 
 # ripgrep instead of grep (fast, respects .gitignore)

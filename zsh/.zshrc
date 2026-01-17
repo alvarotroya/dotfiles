@@ -121,13 +121,14 @@ source <(carapace _carapace)
 # Keybindings
 # --------------------------------------------------
 bindkey '^H' backward-word
-bindkey '^ ' forward-word
 bindkey '^F' forward-word
-bindkey '^G' forward-char
 
 # Word-wise navigation (Meta / Option)
 bindkey '^[b' backward-word
 bindkey '^[f' forward-word
+# Line navigation
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
 
 # --------------------------------------------------
 # Node / NVM (lazy-loaded, fast startup)
