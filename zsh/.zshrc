@@ -11,6 +11,9 @@ fi
 HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=1000000
+# Always write history instantly (important for Atuin)
+setopt inc_append_history
+setopt share_history
 
 setopt autocd extendedglob nomatch notify globdots
 unsetopt beep
@@ -150,3 +153,7 @@ npx()  { nvm exec npx  "$@"; }
 # Misc
 # --------------------------------------------------
 export BAT_THEME="base16"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh --disable-up-arrow)"
