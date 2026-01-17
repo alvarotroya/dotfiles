@@ -7,10 +7,21 @@ alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 alias todo='vim $(pwd)/todo.md' # should automatically look for nearest todo.md file
 alias todos='vim $(pwd)/todo.md' # should automatically look for nearest todo.md file
 
+# cat with syntax-highlighting, line numbers, etc...
+alias cat='bat'
+
+# ripgrep instead of grep (fast, respects .gitignore)
+alias grep='rg --color=auto'
+
+# fd instead of find (easier syntax)
+alias f='fd'
+alias ff='fd .'          # find everything from current directory
+alias fdir='fd --type d' # find only directories
+
 # Eza
-alias ls='eza -l'
-alias ll='eza -l'
-alias la='eza -la'
+alias ls='eza -l --group-directories-first'
+alias ll='eza -l --group-directories-first --git'
+alias la='eza -la --group-directories-first --git'
 
 # Just
 alias j='just'
@@ -39,14 +50,6 @@ alias rps='cd $(find $HOME/repos -maxdepth 5 ! -iname ".*" -type d | sort | fzf 
 alias dfs='cd $(find $HOME/repos/mine/dotfiles -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
 alias data='cd $(find $HOME/data -maxdepth 5 ! -iname ".*" -type d | sort | fzf --header="Change to repos subdirectory")'
 
-# Conda
-alias ca='conda activate'
-alias qm-dev='conda activate qm-dev'
-
-# Mamba
-alias mb='mamba'
-alias ma='mamba activate'
-
 # Docker shortcuts
 alias dc='docker compose'
 alias docker-compose='docker compose'
@@ -55,12 +58,6 @@ alias remove-all-docker-containers='docker rm $(docker ps -qa)'
 alias pause-all-docker-containers='docker pause $(docker ps -q)'
 alias unpause-all-docker-containers='docker unpause $(docker ps -qa)'
 alias remove-all-docker-images='docker rmi -f $(docker images -q)'
-
-# Common commands
-alias rm-dvc='rm -rf $HOME/repos/qm/goliat/pipeline_builder/pipeline_builder/pipeline/.dvc/tmp/'
-alias build-pb-goliat='DOCKER_BUILDKIT=1 docker buildx build --platform linux/amd64 -t pipeline_development_image_goliat -o type=docker -f ./pipeline_builder/docker/Dockerfile.local .'
-alias build-pb-pr-branch='DOCKER_BUILDKIT=1 docker buildx build --platform linux/amd64 -t pipeline_development_image_pr_branch -o type=docker -f ./pipeline_builder/docker/Dockerfile.local .'
-
 
 # k8s
 alias k='kubectl'
