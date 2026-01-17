@@ -61,7 +61,14 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # Autosuggestions
 [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && \
   source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# Keybindings for autosuggestions (AFTER plugin load)
+if (( ${+widgets[autosuggest-accept-word]} )); then
+  bindkey '^F' autosuggest-accept-word
+  bindkey '^E' autosuggest-accept
+fi
 
 # fzf
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
@@ -81,6 +88,11 @@ source <(carapace _carapace)
 # --------------------------------------------------
 bindkey '^H' backward-word
 bindkey '^ ' forward-word
+bindkey '^F' forward-word
+
+# Word-wise navigation (Meta / Option)
+bindkey '^[b' backward-word
+bindkey '^[f' forward-word
 
 # --------------------------------------------------
 # Node / NVM (lazy-loaded, fast startup)
