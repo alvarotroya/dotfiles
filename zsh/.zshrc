@@ -109,6 +109,7 @@ fi
 source <(fzf --zsh)
 
 # zoxide
+export _ZO_EXCLUDE_DIRS="/node_modules:/.git:/dist:/build"
 eval "$(zoxide init zsh)"
 
 # --------------------------------------------------
