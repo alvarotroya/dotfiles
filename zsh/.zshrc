@@ -55,6 +55,7 @@ bindkey -M vicmd ':' undefined-key
 # --------------------------------------------------
 fpath=(
   $HOME/.zfunc
+  $HOME/.zsh/completions
   /opt/homebrew/share/zsh/site-functions
   $fpath
 )
