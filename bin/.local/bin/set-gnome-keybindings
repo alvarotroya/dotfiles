@@ -14,11 +14,14 @@ gsettings set org.gnome.mutter dynamic-workspaces false
 gsettings set org.gnome.desktop.wm.preferences num-workspaces 10
 
 for i in {1..10}; do
-    echo "Setting up keybindings for workspace ${i}..."
-    let ws_num=$((i % 10))
-    [[ ws_num -ne 0 ]] && gsettings set org.gnome.shell.seybindings switch-to-application-${i} "[]"
-    gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-${i} "['<Super><Shift>${ws_num}']"
-    gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-${i} "['<Super>${ws_num}']"
-done
+  echo "Setting up keybindings for workspace ${i}..."
+  ws_num=$((i % 10))
 
+  if [[ $ws_num -ne 0 ]]; then
+    gsettings set org.gnome.shell.keybindings switch-to-application-${ws_num} "[]"
+  fi
+
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-${i} "['<Super><Shift>${ws_num}']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-${i} "['<Super>${ws_num}']"
+done
 echo "Successfully set up i3-like keybindings for Gnome shell."

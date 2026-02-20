@@ -7,10 +7,6 @@ alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 alias todo='vim $(pwd)/todo.md' # should automatically look for nearest todo.md file
 alias todos='vim $(pwd)/todo.md' # should automatically look for nearest todo.md file
 
-# cat with syntax-highlighting, line numbers, etc...
-alias rcat='cat'
-alias cat='bat'
-
 # ripgrep instead of grep (fast, respects .gitignore)
 alias grep='rg --color=auto'
 
