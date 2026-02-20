@@ -1,0 +1,1 @@
+export JAVA_HOME="some_place_that_does_not_exist_yet"

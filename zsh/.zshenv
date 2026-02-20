@@ -1,11 +1,7 @@
 export XDG_CONFIG_HOME=$HOME/.config
 
-# export DOCKER_HOST="unix://${HOME}/.config/colima/default/docker.sock"
-export TESTCONTAINERS_HOST_OVERRIDE=127.0.0.1
-export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
-export TESTCONTAINERS_RYUK_DISABLED=true
-
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home
+local os_file="${ZDOTDIR:-$HOME}/.zsh/os/${OSTYPE%%[0-9]*}.zsh"
+[[ -f "$os_file" ]] && source "$os_file"
 
 export EDITOR=$(which nvim)
 export DOTFILES=$HOME/repos/mine/dotfiles
@@ -19,11 +15,6 @@ bindkey "^X^E" edit-command-line
 bindkey '\e[H' beginning-of-line
 bindkey '^[[1;5D' backward-word  # Ctrl + Left
 bindkey '^[[1;5C' forward-word   # Ctrl + Right
-
-. "$HOME/.cargo/env"
-
-
-
 
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
