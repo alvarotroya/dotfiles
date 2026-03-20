@@ -16,12 +16,23 @@ alias ff='fd .'          # find everything from current directory
 alias fdir='fd --type d' # find only directories
 
 # Eza
-alias ls='eza -l --group-directories-first'
-alias ll='eza -l --group-directories-first --git'
-alias la='eza -la --group-directories-first --git'
+alias ls='eza -l --group-directories-first --icons'
+alias ll='eza -l --group-directories-first --icons --git'
+alias la='eza -la --group-directories-first --icons --git'
+
+# Claude
+alias cl='claude'
+alias calude='claude'
+alias cld='claude --dangerously-skip-permissions'
 
 # Just
 alias j='just'
+
+# Lazygit
+alias lg='lazygit'
+
+# Sesh
+alias s='sesh connect "$(sesh list -i | fzf --height=100% --layout=reverse --border --ansi --prompt="⚡ Pick a sesh: ")"'
 
 # Git
 alias gcm='git checkout main'
@@ -32,6 +43,7 @@ alias gnb='git checkout main && git pull && git checkout -b'
 alias gs='git status'
 alias gd='git diff'
 alias gl='git log'
+alias gll='git log --oneline --decorate --graph'
 alias gco='git co $(git branch | sort | fzf --height=~20 --header="Checkout branch")'
 alias glb='git co $(git lb | cut -d ":" -f 2 | fzf --height=~20 --header="Checkout branch")'
 alias gw='git worktree'
@@ -50,6 +62,8 @@ alias data='cd $(find $HOME/data -maxdepth 5 ! -iname ".*" -type d | sort | fzf 
 # Docker shortcuts
 alias dc='docker compose'
 alias docker-compose='docker compose'
+alias ds='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
+alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
 alias stop-all-docker-containers='docker stop $(docker ps -q)'
 alias remove-all-docker-containers='docker rm $(docker ps -qa)'
 alias pause-all-docker-containers='docker pause $(docker ps -q)'

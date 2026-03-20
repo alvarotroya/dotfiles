@@ -43,3 +43,15 @@
 # resize-overlay-duration = 4s 200ms
 background-opacity = 0.9
 keybind = shift+enter=text:\x1b\r
+
+
+# TMUX window switching using CMD + NUMBER
+keybind = cmd+digit_1=text:\x01\x31
+keybind = cmd+digit_2=text:\x01\x32
+keybind = cmd+digit_3=text:\x01\x33
+keybind = cmd+digit_4=text:\x01\x34
+keybind = cmd+digit_5=text:\x01\x35
+keybind = cmd+digit_6=text:\x01\x36
+keybind = cmd+digit_7=text:\x01\x37
+keybind = cmd+digit_8=text:\x01\x38
+keybind = cmd+digit_9=text:\x01\x39
