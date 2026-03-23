@@ -1,0 +1,3 @@
+[user]
+	email = alvaro.troya.ec@googlemail.com
+	signingkey = ~/.ssh/id_ed25519

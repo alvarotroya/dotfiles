@@ -1,7 +1,11 @@
 [user]
 	name = Álvaro Troya
-	email = a.troya@smight.com
-	signingkey = /Users/alvarotroya/.ssh/id_ed25519_gitlab
+
+[include]
+	path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/repos/smight/"]
+	path = ~/.gitconfig-work
 
 [credential]
 	helper = store
@@ -39,4 +43,4 @@
 [commit]
 	gpgsign = true
 [gpg "ssh"]
-	allowedSignersFile = /Users/alvarotroya/.ssh/allowed_signers
+	allowedSignersFile = ~/.ssh/allowed_signers
