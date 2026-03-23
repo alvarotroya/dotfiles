@@ -1,1 +1,3 @@
-export JAVA_HOME="some_place_that_does_not_exist_yet"
+export ANDROID_HOME=$HOME/Android/Sdk
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export PATH=$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
