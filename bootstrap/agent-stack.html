@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Pi, Herdr &amp; Crew</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
+<style>
+  :root{
+    --paper:#f7f8fa; --surface:#ffffff; --sunk:#eef0f4;
+    --ink:#171d26; --ink-2:#3f4855; --ink-3:#6b7480;
+    --rule:#dfe3ea; --rule-2:#c9cfd9;
+    --brass:#9a6c14; --brass-bg:#f6ecd6;
+    --teal:#2f6a65; --teal-bg:#e2efed;
+    --code-bg:#141a23; --code-ink:#dbe2ec; --code-dim:#7f8a9a; --code-accent:#d9a441;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#131820; --surface:#1a212c; --sunk:#10151c;
+      --ink:#e7ecf3; --ink-2:#b3bcc9; --ink-3:#828d9c;
+      --rule:#2a333f; --rule-2:#3a4551;
+      --brass:#d9a441; --brass-bg:#2c2416;
+      --teal:#6cb5ad; --teal-bg:#16292a;
+      --code-bg:#0d1219; --code-ink:#dbe2ec; --code-dim:#77828f; --code-accent:#d9a441;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#131820; --surface:#1a212c; --sunk:#10151c;
+    --ink:#e7ecf3; --ink-2:#b3bcc9; --ink-3:#828d9c;
+    --rule:#2a333f; --rule-2:#3a4551;
+    --brass:#d9a441; --brass-bg:#2c2416;
+    --teal:#6cb5ad; --teal-bg:#16292a;
+    --code-bg:#0d1219; --code-ink:#dbe2ec; --code-dim:#77828f; --code-accent:#d9a441;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    font-size:16px; line-height:1.6; margin:0;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:53rem; margin:0 auto; padding:3.5rem 1.5rem 6rem}
+  h1,h2,h3{font-family:"IBM Plex Serif",Georgia,serif; text-wrap:balance; margin:0}
+  h1{font-size:2.6rem; font-weight:600; line-height:1.1; letter-spacing:-.015em}
+  h2{font-size:1.45rem; font-weight:600; letter-spacing:-.01em}
+  h3{font-size:1.05rem; font-weight:600}
+  p{margin:0; max-width:64ch}
+  a{color:var(--brass); text-underline-offset:2px}
+  code{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:.87em}
+
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; font-weight:500;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
+  }
+  header{display:flex; flex-direction:column; gap:.9rem; padding-bottom:2.5rem;
+    border-bottom:1px solid var(--rule)}
+  header p{color:var(--ink-2); font-size:1.08rem}
+
+  section{display:flex; flex-direction:column; gap:1.1rem; padding:3rem 0 0}
+  .sec-head{display:flex; flex-direction:column; gap:.35rem}
+
+  /* ---- status board ---- */
+  .board{display:grid; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr)); gap:.5rem}
+  .chip{
+    display:flex; align-items:baseline; gap:.5rem; min-width:0;
+    background:var(--surface); border:1px solid var(--rule);
+    border-left:3px solid var(--teal); border-radius:3px; padding:.6rem .75rem;
+  }
+  .chip.pending{border-left-color:var(--brass)}
+  .chip b{font-family:"IBM Plex Mono",monospace; font-size:.83rem; font-weight:600;
+    color:var(--ink); white-space:nowrap}
+  .chip span{font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--ink-3);
+    margin-left:auto; font-variant-numeric:tabular-nums; white-space:nowrap}
+
+  .note{
+    display:flex; gap:.75rem; background:var(--brass-bg); border:1px solid var(--rule);
+    border-left:3px solid var(--brass); border-radius:3px; padding:.85rem 1rem;
+  }
+  .note .eyebrow{color:var(--brass); flex:0 0 auto; padding-top:.15rem}
+  .note p{font-size:.93rem; color:var(--ink-2)}
+
+  /* ---- code ---- */
+  pre{
+    background:var(--code-bg); color:var(--code-ink); border-radius:4px;
+    padding:.9rem 1.1rem; margin:0; overflow-x:auto;
+    font-family:"IBM Plex Mono",monospace; font-size:.82rem; line-height:1.75;
+  }
+  pre .c{color:var(--code-dim)}
+  pre .k{color:var(--code-accent)}
+
+  /* ---- tool cards ---- */
+  .tool{
+    background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+    padding:1.35rem 1.5rem; display:flex; flex-direction:column; gap:.9rem;
+  }
+  .tool-head{display:flex; align-items:baseline; gap:.6rem; flex-wrap:wrap}
+  .tool-head h3{font-size:1.15rem}
+  .tag{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--teal); background:var(--teal-bg);
+    border-radius:2px; padding:.15rem .45rem;
+  }
+  .tool p{font-size:.94rem; color:var(--ink-2)}
+  .tools{display:flex; flex-direction:column; gap:.85rem}
+
+  /* ---- tables ---- */
+  .scroll{overflow-x:auto; border:1px solid var(--rule); border-radius:4px}
+  table{border-collapse:collapse; width:100%; font-size:.88rem}
+  th,td{text-align:left; padding:.6rem .85rem; border-bottom:1px solid var(--rule)}
+  tr:last-child td{border-bottom:none}
+  th{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-3); background:var(--sunk); font-weight:500;
+  }
+  td code{color:var(--ink); background:var(--sunk); padding:.1rem .3rem; border-radius:2px}
+  td:first-child{white-space:nowrap}
+
+  ul{margin:0; padding-left:1.1rem; color:var(--ink-2); font-size:.94rem}
+  li{margin-bottom:.3rem}
+  li::marker{color:var(--ink-3)}
+
+  svg{display:block; width:100%; height:auto}
+  .fig{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:1.4rem}
+  figcaption{font-size:.83rem; color:var(--ink-3); margin-top:.9rem; text-align:center}
+
+  @media (max-width:34rem){ h1{font-size:2rem} .wrap{padding:2.5rem 1.1rem 4rem} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Debian forky &middot; installed 30 Aug 2026</div>
+  <h1>Pi, Herdr &amp; Crew</h1>
+  <p>Five tools layered onto Claude Code, Codex and Pi — what each one is for, the commands
+  that matter, and how to rebuild the whole thing on the next machine.</p>
+</header>
+
+<section>
+  <div class="sec-head">
+    <div class="eyebrow">Verified state</div>
+    <h2>What's on the box</h2>
+  </div>
+  <div class="board">
+    <div class="chip"><b>node</b><span>v24.14.1</span></div>
+    <div class="chip"><b>pi</b><span>0.84.4</span></div>
+    <div class="chip"><b>herdr</b><span>0.8.2</span></div>
+    <div class="chip"><b>lavish-axi</b><span>0.1.63</span></div>
+    <div class="chip"><b>claude</b><span>2.1.251</span></div>
+    <div class="chip"><b>codex</b><span>0.142.0</span></div>
+    <div class="chip"><b>skills</b><span>37</span></div>
+    <div class="chip"><b>firstmate</b><span>d71f4b9</span></div>
+    <div class="chip pending"><b>pi &middot; anthropic</b><span>needs login</span></div>
+    <div class="chip pending"><b>pi &middot; codex</b><span>needs login</span></div>
+  </div>
+  <div class="note">
+    <div class="eyebrow">Do first</div>
+    <p>Restart your shell, then run <code>pi</code> and <code>/login</code> twice — once for
+    Claude Pro/Max, once for ChatGPT Plus/Pro. Everything else is already wired.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div class="eyebrow">The blocker that was fixed</div>
+    <h2>Node had to become real</h2>
+  </div>
+  <p><code>node</code>, <code>npm</code> and <code>npx</code> existed only as lazy zsh
+  <em>functions</em>. Any process that isn't a zsh shell — an MCP server, a SessionStart hook,
+  an agent CLI — calls <code>execvp("npx")</code> and gets <code>ENOENT</code>. That's why the
+  Playwright MCP server was dead. Four of the five tools install through npm, so nothing could
+  proceed until this was real.</p>
+  <pre><span class="c"># .zshenv — a symlink you control, first on PATH</span>
+<span class="k">export</span> NVM_DIR="$HOME/.nvm"
+[[ -d "$NVM_DIR/current/bin" ]] &amp;&amp; path=("$NVM_DIR/current/bin" $path)
+
+<span class="c"># changing node version = repoint the symlink, never edit PATH</span>
+nvm install v26.x.x &amp;&amp; ln -sfn "$NVM_DIR/versions/node/v26.x.x" "$NVM_DIR/current"</pre>
+  <p>The lazy <code>node/npm/npx</code> functions are gone; <code>nvm()</code> itself stays lazy,
+  since sourcing <code>nvm.sh</code> is slow and is only needed to switch versions.
+  <code>typeset -U path</code> now dedupes PATH, which had grown to roughly 20 entries with
+  Android SDK paths repeated five times over.</p>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div class="eyebrow">How the pieces sit</div>
+    <h2>Four layers, not five tools</h2>
+  </div>
+  <figure class="fig" style="margin:0">
+    <svg viewBox="0 0 700 340" role="img" aria-label="Layer diagram: node runtime at the base, three agent harnesses above it, skills and hooks feeding into them, and herdr and firstmate orchestrating on top.">
+      <defs>
+        <marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 z" fill="var(--rule-2)"/>
+        </marker>
+      </defs>
+      <g font-family="IBM Plex Mono, monospace" font-size="12">
+
+        <!-- orchestration -->
+        <text x="20" y="30" fill="var(--ink-3)" font-size="10" letter-spacing="1.4">ORCHESTRATION</text>
+        <rect x="20" y="40" width="200" height="52" rx="3" fill="var(--sunk)" stroke="var(--brass)" stroke-width="1.5"/>
+        <text x="36" y="63" fill="var(--ink)" font-weight="600">herdr</text>
+        <text x="36" y="80" fill="var(--ink-3)" font-size="10.5">owns their terminals</text>
+
+        <rect x="240" y="40" width="200" height="52" rx="3" fill="var(--sunk)" stroke="var(--brass)" stroke-width="1.5"/>
+        <text x="256" y="63" fill="var(--ink)" font-weight="600">firstmate</text>
+        <text x="256" y="80" fill="var(--ink-3)" font-size="10.5">runs a crew of them</text>
+
+        <rect x="460" y="40" width="220" height="52" rx="3" fill="var(--sunk)" stroke="var(--teal)" stroke-width="1.5"/>
+        <text x="476" y="63" fill="var(--ink)" font-weight="600">lavish</text>
+        <text x="476" y="80" fill="var(--ink-3)" font-size="10.5">review surface for output</text>
+
+        <!-- harnesses -->
+        <text x="20" y="140" fill="var(--ink-3)" font-size="10" letter-spacing="1.4">HARNESSES</text>
+        <rect x="20" y="150" width="205" height="46" rx="3" fill="var(--surface)" stroke="var(--rule-2)"/>
+        <text x="36" y="178" fill="var(--ink)" font-weight="600">claude code</text>
+        <rect x="245" y="150" width="205" height="46" rx="3" fill="var(--surface)" stroke="var(--rule-2)"/>
+        <text x="261" y="178" fill="var(--ink)" font-weight="600">codex</text>
+        <rect x="470" y="150" width="210" height="46" rx="3" fill="var(--surface)" stroke="var(--rule-2)"/>
+        <text x="486" y="178" fill="var(--ink)" font-weight="600">pi</text>
+
+        <!-- skills -->
+        <text x="20" y="244" fill="var(--ink-3)" font-size="10" letter-spacing="1.4">SHARED KNOWLEDGE</text>
+        <rect x="20" y="254" width="660" height="44" rx="3" fill="var(--teal-bg)" stroke="var(--teal)"/>
+        <text x="36" y="281" fill="var(--ink)" font-weight="600">~/.agents/skills</text>
+        <text x="196" y="281" fill="var(--ink-2)" font-size="11">37 mattpocock skills — read by all three</text>
+
+        <!-- runtime -->
+        <rect x="20" y="312" width="660" height="20" rx="3" fill="var(--sunk)" stroke="var(--rule-2)"/>
+        <text x="36" y="326" fill="var(--ink-3)" font-size="10.5">$NVM_DIR/current/bin  —  node v24.14.1 on PATH for every non-shell process</text>
+
+        <!-- connectors -->
+        <g stroke="var(--rule-2)" stroke-width="1.2" fill="none" marker-end="url(#ar)">
+          <path d="M122,150 L122,100"/>
+          <path d="M347,150 L347,100"/>
+          <path d="M575,150 L575,100"/>
+          <path d="M122,254 L122,204"/>
+          <path d="M347,254 L347,204"/>
+          <path d="M575,254 L575,204"/>
+        </g>
+      </g>
+    </svg>
+    <figcaption>Skills are shared downward; orchestration wraps upward. Only Lavish spans both —
+    agents write artifacts, you review them.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div class="eyebrow">The five</div>
+    <h2>What each one is actually for</h2>
+  </div>
+
+  <div class="tools">
+
+    <div class="tool">
+      <div class="tool-head"><h3>Pi</h3><span class="tag">second harness</span></div>
+      <p>Read, write, edit, bash, and a system prompt of a few hundred tokens — the bet being
+      that frontier models already know what a coding agent is. Its real value to you is as a
+      control: when something works in Pi but not Claude Code, the harness is the variable.</p>
+      <pre>pi                      <span class="c"># start in current project</span>
+pi -p "one-shot"        <span class="c"># non-interactive</span>
+pi -c                   <span class="c"># continue last session</span>
+
+<span class="c"># first run, inside the TUI:</span>
+/login   <span class="c">-> Claude Pro/Max</span>
+/login   <span class="c">-> ChatGPT Plus/Pro (Codex)</span>
+/model   <span class="c">-> pick one, Ctrl+S saves it as the startup default</span></pre>
+      <div class="note">
+        <div class="eyebrow">Cost</div>
+        <p>Anthropic bills third-party harness usage from your <em>extra usage</em> balance,
+        per token. It does not draw on Claude plan limits — Pi on your Claude subscription
+        costs real money in a way Claude Code does not.</p>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="tool-head"><h3>Herdr</h3><span class="tag">multiplexer</span></div>
+      <p>tmux-shaped, but it recognizes coding agents inside panes and exposes their state over
+      a socket API — so agents can spawn panes and wait until another agent is genuinely blocked,
+      rather than you playing switchboard. A single 22&nbsp;MB Rust binary.</p>
+      <pre>herdr                     <span class="c"># launch / attach the persistent session</span>
+herdr status
+herdr integration status  <span class="c"># claude, codex, pi — all current (v8)</span>
+herdr --skill             <span class="c"># the skill that lets an agent drive herdr</span></pre>
+      <p>The installed integrations are state-reporting hooks: each agent reports idle / working /
+      blocked, which is what makes the mission-control view worth having.</p>
+    </div>
+
+    <div class="tool">
+      <div class="tool-head"><h3>Lavish</h3><span class="tag">review surface</span></div>
+      <p>Turns an HTML artifact into a local page you annotate — click elements, select text,
+      queue prompts — and the feedback flows back to the agent through a long poll. Mermaid
+      diagrams become editable Excalidraw whiteboards.</p>
+      <pre>lavish-axi file.html            <span class="c"># open / resume a session</span>
+lavish-axi poll file.html       <span class="c"># agent waits here for your feedback</span>
+lavish-axi export file.html     <span class="c"># one portable HTML, assets inlined</span>
+lavish-axi stop                 <span class="c"># shut the background server down</span></pre>
+      <div class="note">
+        <div class="eyebrow">Careful</div>
+        <p><code>lavish-axi share</code> publishes to <strong>ht-ml.app</strong>, a third-party
+        host, and is <strong>public by default</strong>. Pass <code>--private</code> for a
+        password-gated page.</p>
+      </div>
+    </div>
+
+    <div class="tool">
+      <div class="tool-head"><h3>mattpocock/skills</h3><span class="tag">37 installed</span></div>
+      <p>Installed once into <code>~/.agents/skills</code> and shared by all three harnesses.
+      They split into two kinds, and the split is deliberate — not a broken install.</p>
+      <div class="scroll">
+        <table>
+          <tr><th>Kind</th><th>Count</th><th>Examples</th></tr>
+          <tr>
+            <td><strong>Auto-invocable</strong></td><td>15</td>
+            <td><code>tdd</code> <code>diagnosing-bugs</code> <code>code-review</code>
+                <code>codebase-design</code> <code>research</code></td>
+          </tr>
+          <tr>
+            <td><strong>Explicit only</strong></td><td>22</td>
+            <td><code>ask-matt</code> <code>wayfinder</code> <code>to-spec</code>
+                <code>to-tickets</code> <code>implement</code> <code>triage</code></td>
+          </tr>
+        </table>
+      </div>
+      <ul>
+        <li>Start with <strong><code>ask-matt</code></strong> — it's a router that tells you
+        which skill fits your situation.</li>
+        <li>Run <strong><code>setup-matt-pocock-skills</code></strong> once per repo before the
+        planning skills (<code>to-spec</code>, <code>to-tickets</code>, <code>wayfinder</code>,
+        <code>triage</code>) will work — it configures the issue tracker and label vocabulary.</li>
+      </ul>
+    </div>
+
+    <div class="tool">
+      <div class="tool-head"><h3>Firstmate</h3><span class="tag">agent distro</span></div>
+      <p>Not a package — the cloned repo <em>is</em> the distro. Launching any supported harness
+      inside it turns that agent into a "first mate" that spawns crewmates, each in its own git
+      worktree and its own visible tmux window (or Herdr tab), supervises them, and hands back
+      finished PRs. You talk to one agent; it juggles the tabs.</p>
+      <pre>cd ~/repos/mine/firstmate
+claude          <span class="c"># or: pi / codex</span>
+
+<span class="c"># then, in plain language:</span>
+<span class="c"># "look at project X, fix the flaky login test and add dark mode"</span></pre>
+      <p>Modes are per project: <code>no-mistakes</code>, <code>direct-PR</code>,
+      <code>local-only</code>. Update from inside with <code>/updatefirstmate</code>.
+      <code>gh</code> is already authenticated as <code>alvarotroya</code>.</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div class="eyebrow">Staying current</div>
+    <h2>Pulling from upstream</h2>
+  </div>
+  <p>Each tool self-updates from its own source. After updating, bump the matching pin in
+  <code>bootstrap/agents.sh</code> so a rebuild reproduces what you're actually running.</p>
+  <div class="scroll">
+    <table>
+      <tr><th>Tool</th><th>Command</th><th>Source</th></tr>
+      <tr><td>Pi</td><td><code>pi update</code></td><td>npm</td></tr>
+      <tr><td>Herdr</td><td><code>herdr update</code></td><td>GitHub releases</td></tr>
+      <tr><td>Lavish</td><td><code>lavish-axi update</code></td><td>npm</td></tr>
+      <tr><td>Skills</td><td><code>npx skills update</code></td><td>git</td></tr>
+      <tr><td>Firstmate</td><td><code>/updatefirstmate</code></td><td>git</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <div class="eyebrow">Next machine</div>
+    <h2>Rebuilding from scratch</h2>
+  </div>
+  <p>Everything is pinned in your dotfiles repo. Stow the configs, run one script, do the two
+  logins. The script is idempotent and takes individual phase names if you only want a piece of it.</p>
+  <pre>git clone git@github.com:alvarotroya/dotfiles.git ~/repos/dotfiles
+<span class="k">cd</span> ~/repos/dotfiles &amp;&amp; stow zsh -t ~/
+./bootstrap/agents.sh
+
+<span class="c"># or one phase at a time:</span>
+./bootstrap/agents.sh node npm skills lavish herdr firstmate</pre>
+  <div class="scroll">
+    <table>
+      <tr><th>File</th><th>Holds</th></tr>
+      <tr><td><code>bootstrap/agents.sh</code></td><td>Pinned versions, the herdr SHA-256, all six install phases</td></tr>
+      <tr><td><code>bootstrap/agents-skill-lock.json</code></td><td>The 37 skill pins</td></tr>
+      <tr><td><code>bootstrap/AGENTS-STACK.md</code></td><td>This reference, in the repo</td></tr>
+      <tr><td><code>zsh/.zshenv</code></td><td>The node PATH fix and the DOTFILES path correction</td></tr>
+    </table>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

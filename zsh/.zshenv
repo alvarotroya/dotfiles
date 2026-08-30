@@ -4,10 +4,19 @@ local os_file="${ZDOTDIR:-$HOME}/.zsh/os/${OSTYPE%%[0-9]*}.zsh"
 [[ -f "$os_file" ]] && source "$os_file"
 
 export EDITOR=$(which nvim)
-export DOTFILES=$HOME/repos/mine/dotfiles
+export DOTFILES=$HOME/repos/dotfiles
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$HOME/.local/bin
+
+# Dedupe PATH: .zshenv runs for every zsh, nested ones included, so entries pile up.
+typeset -U path PATH
+
+# Node baseline. $NVM_DIR/current is a symlink we control; repoint it to change
+# the version that non-login processes (MCP servers, agent CLIs) see.
+export NVM_DIR="$HOME/.nvm"
+[[ -d "$NVM_DIR/current/bin" ]] && path=("$NVM_DIR/current/bin" $path)
+
+path+=("$GOPATH/bin" "$HOME/.local/bin")
+export PATH
 
 autoload -z edit-command-line
 zle -N edit-command-line

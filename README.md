@@ -21,6 +21,25 @@ For zsh:
 - Install rust: https://www.rust-lang.org/tools/install
 - Install uv: https://docs.astral.sh/uv/getting-started/installation/
 
+## Agent stack
+
+`bootstrap/` installs and pins the CLI agent stack — pi, herdr, lavish, firstmate, and
+the mattpocock skills — wired into Claude Code, Codex and Pi.
+
+```
+stow zsh -t ~/          # .zshenv puts the pinned node on PATH; do this first
+./bootstrap/agents.sh   # idempotent; takes phase names if you only want part of it
+```
+
+Then authenticate pi: run `pi`, and `/login` once for Claude and once for Codex.
+
+| File | |
+|---|---|
+| `bootstrap/agents.sh` | Pinned installer, six phases |
+| `bootstrap/AGENTS-STACK.md` | What each tool does, its commands, and how to update it |
+| `bootstrap/agent-stack.html` | The same reference as a page — open it in a browser |
+| `bootstrap/agents-skill-lock.json` | Skill pins |
+
 ## Everything below is outdated ^^
 
 My dotfiles. i3gaps + vim + oh-my-zsh + tmux + dunst + arrow keys on home row.

@@ -137,15 +137,13 @@ bindkey '^E' end-of-line
 # --------------------------------------------------
 export NVM_DIR="$HOME/.nvm"
 
+# Baseline node/npm/npx come from $NVM_DIR/current/bin, put on PATH in .zshenv.
+# nvm() stays lazy: sourcing nvm.sh is slow, and we only need it to switch versions.
 nvm() {
-  unset -f nvm node npm npx
+  unset -f nvm
   source "$NVM_DIR/nvm.sh"
   nvm "$@"
 }
-
-node() { nvm exec node "$@"; }
-npm()  { nvm exec npm  "$@"; }
-npx()  { nvm exec npx  "$@"; }
 
 # --------------------------------------------------
 # Cargo

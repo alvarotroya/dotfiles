@@ -66,6 +66,7 @@ alias ds='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}
 alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
 alias stop-all-docker-containers='docker stop $(docker ps -q)'
 alias remove-all-docker-containers='docker rm $(docker ps -qa)'
+alias remove-all-docker-volumes='docker volume rm -f $(docker volume ls -q)'
 alias pause-all-docker-containers='docker pause $(docker ps -q)'
 alias unpause-all-docker-containers='docker unpause $(docker ps -qa)'
 alias remove-all-docker-images='docker rmi -f $(docker images -q)'
